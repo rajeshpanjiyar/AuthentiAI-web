@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@100;200;300;500;600;700&family=Poppins:wght@300&display=swap');
+
+.heading {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 55px;
+    letter-spacing: 0.02em;
+    color: #1F1F1F;
+}
+
+.title {
+    background: #6F47EB;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin: 5px;
+    width: fit-content;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 20px;
+    color: #F7F7F7;
+}
+
+.main-upper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+// Button Row
+.button-row,
+.prompt-example {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 20px;
+    width: fit-content;
+    background: rgba(217, 217, 217, 0.32);
+    border-radius: 30px;
+    padding: 10px 25px;
+    color: #595959;
+}
+
+.button-row{
+    margin-top: 50px;
+}
+
+.text-input {
+    width: 40vw;
+    border: none;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 16px;
+    color: #595959;
+    background-color: #1f1f1f00;
+}
+
+.text-input:focus {
+    outline: none;
+}
+
+.voice-button,
+.submit-button {
+    border: none;
+    color: #595959;
+    margin: 0px 8px;
+}
+
+.voice-button {
+    background-color: #1f1f1f00;
+}
+
+.voice-button:hover,
+.submit-button:hover {
+    cursor: pointer;
+}
+
+.voice-button-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.prompt-section {
+    margin: 20px 10px 30px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0px 60px;
+}
+
+.card {
+    border: 1px solid #CFCFCF;
+    filter: drop-shadow(2px 4px 30px rgba(0, 0, 0, 0.25));
+    border-radius: 5px;
+    width: 280px;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.card-title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0px 8px 5px 8px;
+}
+
+.card-content {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    text-align: center;
+
+}
