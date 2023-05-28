@@ -11,8 +11,8 @@ const Navbar = () => {
         <div className='navbar__left'>
         </div>
         <div className='navbar__right'>
-            <a href='#' onClick = {showUserDetails}>{user}</a>
-            <img src="profile.png" class="user" onClick = {showUserDetails} />
+            <div onClick = {showUserDetails}>{user}</div>
+            <img src="profile.png" class="user" alt="User Profile" onClick = {showUserDetails} />
         </div>
       </div>
     )

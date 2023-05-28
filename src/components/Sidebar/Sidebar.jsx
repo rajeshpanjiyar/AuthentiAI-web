@@ -106,6 +106,7 @@ const Sidebar = () => {
       <div className="sidebar__logo">
         <img
           src="logo.svg"
+          alt="AuthentiAI Logo"
           height="30"
           style={{ margin: "5px 10px 5px 0px" }}
         />
