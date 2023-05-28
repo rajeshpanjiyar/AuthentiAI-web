@@ -1,6 +1,6 @@
 import './AppLayout.scss';
 import Sidebar from '../Sidebar/Sidebar';
-import Main from '../Main/Main';
+import Main from '../../pages/Main/Main';
 import Navbar from '../Navbar/Navbar';
 import { Outlet } from "react-router-dom";
 
