@@ -105,7 +105,7 @@ const Main = () => {
           <div className="title-section">
             <div className="heading">Welcome to AuthentiAI</div>
             <div className="title">
-              An AI Powered Product Authentication Assistant
+              Your AI Powered Product Authentication Assistant
             </div>
           </div>
         )}
