@@ -1,6 +1,15 @@
 import "./Main.scss";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import * as ReactDOM from "react-dom";
+import { message } from "antd";
+import { BODY, REQUEST_BODY } from "./RequestBodyConfiguration";
+
+const constructRequestBody = (prompt) => {
+  const body = BODY;
+  body.prompt = prompt;
+  return JSON.stringify(body);
+};
 
 const promptExamples = [
   "Can AuthentiBot help me identify counterfeit products?",
@@ -8,25 +17,101 @@ const promptExamples = [
   "How does AuthentiBot integrate with product verification services?",
 ];
 
+const chatReactElementArray = [];
+
 const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [isListening, setIsListening] = useState(false);
+  const [chats, setChats] = useState([]);
   const [chatting, setChatting] = useState(false);
-  const [chats, setChats] = useState([
-    "Hello",
-    "Hi, How can I help you today?",
-    "I want to learn about an AI",
-    "AI stands for Artificial Intelligence. It refers to the simulation of human intelligence in machines that are programmed to think and learn like humans. AI systems are designed to perform tasks that typically require human intelligence, such as problem-solving, pattern recognition, decision-making, and natural language processing. There are different types of AI, ranging from narrow or weak AI to general or strong AI: Narrow or Weak AI: This type of AI is designed for specific tasks and has a limited scope." ]);
+  const myRef = useRef(null);
+  const [requestOptions, setRequestOptions] = useState(REQUEST_BODY);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    setTimeout(() => {
+      myRef?.current?.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+  });
+
+  function addChatMessage(bot, message) {
+    return new Promise(async function (resolve) {
+      var tempChats = chats;
+      tempChats.push({ isBot: bot, data: message }); // Add the new message to the chat array
+      setChats(tempChats);
+
+      var chatMessageElement = null;
+      if (bot) {
+        chatMessageElement = React.createElement(
+          "div",
+          { className: "chat-item-left" },
+          React.createElement("i", { className: "bx bx-bot" }),
+          React.createElement(
+            "div",
+            { className: "chat-section-left", ref: myRef },
+            message
+          )
+        );
+      } else {
+        chatMessageElement = React.createElement(
+          "div",
+          { className: "chat-item-right" },
+          React.createElement("img", {
+            src: "profile.png",
+            className: "user-chat-icon",
+            alt: "User Profile",
+          }),
+          React.createElement(
+            "div",
+            { className: "chat-section-right" },
+            message
+          )
+        );
+      }
+
+      chatReactElementArray.push(chatMessageElement);
+      const X = React.createElement("div", {}, chatReactElementArray);
+      ReactDOM.render(X, document.getElementById("chatContainer"));
+
+      resolve();
+    });
+  }
+
+  function fetchPromptReply() {
+    return new Promise(async function (resolve) {
+      addChatMessage(false, inputValue);
+      var reply = "";
+      await fetch("https://api.openai.com/v1/completions", requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data", data);
+          reply = data?.choices[0]?.text;
+        })
+        .catch((err) => {
+          reply = "X";
+          message.error("Ran out of tokens for today! Try tomorrow!");
+        });
+      addChatMessage(true, reply);
+      resolve();
+    });
+  }
+
+  function configureRequestBody() {
+    return new Promise(function (resolve) {
+      const temp = requestOptions;
+      temp.body = constructRequestBody(inputValue);
+      setRequestOptions(temp);
+      resolve();
+    });
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setChatting(true);
     setInputValue("");
 
-    //TODO: Remove when our product is furnished with real data
-    const arr = chats;
-    arr[0] = inputValue;
-    setChats(arr);
+    configureRequestBody().then(async function () {
+      return await fetchPromptReply();
+    });
   };
 
   const handleVoiceInput = () => {
@@ -64,42 +149,12 @@ const Main = () => {
 
   const handlePromptExampleClick = (index) => {
     setChatting(true);
-    
-    //TODO: Remove when our product is furnished with real data
-    const arr = chats;
-    arr[0] = promptExamples[index];
-    setChats(arr);
   };
 
   return (
     <div className={!chatting ? "main" : ""}>
-      {chatting && (
-        <div className="chat-container">
-          {chats.map((item, index) => (
-            <div
-              className={index % 2 === 0 ? "chat-item-right" : "chat-item-left"}
-            >
-              {index % 2 === 0 ? (
-                <img
-                  src="profile.png"
-                  class="user-chat-icon"
-                  alt="User Profile"
-                />
-              ) : (
-                <i className="bx bx-bot"></i>
-              )}
-              <div
-                className={
-                  index % 2 === 0 ? "chat-section-right" : "chat-section-left"
-                }
-                key={index}
-              >
-                {item}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      {chatting && <div id="chatContainer" className="chat-container"></div>}
+
       <div>
         {!chatting && (
           <div className="title-section">
@@ -144,9 +199,7 @@ const Main = () => {
           </div>
         </form>
 
-        <div
-          className="disclaimer"
-        >
+        <div className="disclaimer">
           We are still under a development phase and the information represented
           are not our personal views.
         </div>
