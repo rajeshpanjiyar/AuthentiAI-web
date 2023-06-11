@@ -110,7 +110,9 @@ const Sidebar = () => {
           height="30"
           style={{ margin: "5px 10px 5px 0px" }}
         />
+      <Link to="/">
         AuthentiAI
+      </Link>
       </div>
       <div ref={sidebarRef} className="sidebar__menu">
         {sidebarNavItems.map((item, index) => (

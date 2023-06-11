@@ -162,7 +162,7 @@ const Main = () => {
           <div className="title-section">
             <div className="heading">Welcome to AuthentiAI</div>
             <div className="title">
-              An AI Powered Product Authentication Assistant
+              Your AI Powered Product Authentication Assistant
             </div>
           </div>
         )}
@@ -208,7 +208,8 @@ const Main = () => {
       </div>
       {!chatting && (
         <div className="prompt-section">
-          <div>Prompt Examples</div>
+          <div className="prompt-examples-title"
+          >Prompt Examples</div>
           {promptExamples.map((item, index) => (
             <Link
               to={item.to}
