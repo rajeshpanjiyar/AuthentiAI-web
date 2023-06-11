@@ -1,8 +1,11 @@
+import { systemMessage } from "./systemMessage";
+
+const mess = { role: "user", content: "" };
 export const BODY = {
-  model: "text-davinci-003",
-  prompt: prompt,
+  model: "gpt-3.5-turbo",
+  messages: [systemMessage, mess],
   temperature: 0.1,
-  max_tokens: 200,
+  max_tokens: 900,
   top_p: 1,
   frequency_penalty: 0,
   presence_penalty: 0.5,

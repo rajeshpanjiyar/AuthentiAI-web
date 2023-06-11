@@ -7,7 +7,8 @@ import { BODY, REQUEST_BODY } from "./RequestBodyConfiguration";
 
 const constructRequestBody = (prompt) => {
   const body = BODY;
-  body.prompt = prompt;
+  const message = { role: "user", content: prompt };
+  body.messages[1] = message;
   return JSON.stringify(body);
 };
 
@@ -24,8 +25,8 @@ const Main = () => {
   const [isListening, setIsListening] = useState(false);
   const [chats, setChats] = useState([]);
   const [chatting, setChatting] = useState(false);
-  const myRef = useRef(null);
   const [requestOptions, setRequestOptions] = useState(REQUEST_BODY);
+  const myRef = useRef(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -80,14 +81,14 @@ const Main = () => {
     return new Promise(async function (resolve) {
       addChatMessage(false, inputValue);
       var reply = "";
-      await fetch("https://api.openai.com/v1/completions", requestOptions)
+      await fetch("https://api.openai.com/v1/chat/completions", requestOptions)
         .then((response) => response.json())
         .then((data) => {
           console.log("data", data);
-          reply = data?.choices[0]?.text;
+          reply = data?.choices[0]?.message?.content;
         })
         .catch((err) => {
-          reply = "X";
+          reply = "Please try again later!";
           message.error("Ran out of tokens for today! Try tomorrow!");
         });
       addChatMessage(true, reply);
@@ -148,6 +149,7 @@ const Main = () => {
   };
 
   const handlePromptExampleClick = (index) => {
+    setInputValue(promptExamples[index]);
     setChatting(true);
   };
 
