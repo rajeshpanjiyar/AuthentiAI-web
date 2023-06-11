@@ -208,7 +208,8 @@ const Main = () => {
       </div>
       {!chatting && (
         <div className="prompt-section">
-          <div>Prompt Examples</div>
+          <div className="prompt-examples-title"
+          >Prompt Examples</div>
           {promptExamples.map((item, index) => (
             <Link
               to={item.to}
