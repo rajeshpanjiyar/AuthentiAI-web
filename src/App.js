@@ -9,6 +9,7 @@ import Integration from "./pages/Integration/Integration";
 import Support from "./pages/Support/Support";
 import Faq from "./pages/Faq/Faq";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import ChatHistory from "./pages/ChatHistory/ChatHistory";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/integration" element={<Integration />} />
           <Route path="/support" element={<Support />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/chat-history" element={<ChatHistory />} />
           <Route path="/*" element={<PageNotFound />} />
         </Route>
       </Routes>

@@ -3,6 +3,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as ReactDOM from "react-dom";
 import { message } from "antd";
+import Axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 import { BODY, REQUEST_BODY } from "./RequestBodyConfiguration";
 
 const constructRequestBody = (prompt) => {
@@ -24,6 +27,7 @@ const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [chats, setChats] = useState([]);
+  const [currentRR, setCurrentRR] = useState({ user: "", bot: "" });
   const [chatting, setChatting] = useState(false);
   const [requestOptions, setRequestOptions] = useState(REQUEST_BODY);
   const myRef = useRef(null);
@@ -37,10 +41,13 @@ const Main = () => {
   function addChatMessage(bot, message) {
     return new Promise(async function (resolve) {
       var tempChats = chats;
-      tempChats.push({ isBot: bot, data: message }); // Add the new message to the chat array
-      setChats(tempChats);
-
+      const chatElement = {
+        user: { message: "", timestamp: "" },
+        bot: { message: "", timestamp: "" },
+      };
       var chatMessageElement = null;
+      var lastIndex = tempChats.length - 1;
+
       if (bot) {
         chatMessageElement = React.createElement(
           "div",
@@ -52,6 +59,10 @@ const Main = () => {
             message
           )
         );
+        tempChats[lastIndex].bot = {
+          message: message,
+          timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
+        };
       } else {
         chatMessageElement = React.createElement(
           "div",
@@ -67,12 +78,18 @@ const Main = () => {
             message
           )
         );
+        tempChats.push(chatElement);
+        lastIndex = tempChats.length - 1;
+        tempChats[lastIndex].user = {
+          message: message,
+          timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
+        };
       }
-
+      setCurrentRR(tempChats[lastIndex]);
+      setChats(tempChats);
       chatReactElementArray.push(chatMessageElement);
       const X = React.createElement("div", {}, chatReactElementArray);
       ReactDOM.render(X, document.getElementById("chatContainer"));
-
       resolve();
     });
   }
@@ -105,14 +122,36 @@ const Main = () => {
     });
   }
 
+  async function storeChats() {
+    const postData = {
+      user_id: "12345",
+      chats: currentRR,
+    };
+
+    await Axios.post(
+      `${process.env.REACT_APP_SERVER_BASE_URL}/api/chathistory`,
+      postData
+    )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setChatting(true);
     setInputValue("");
-
-    configureRequestBody().then(async function () {
-      return await fetchPromptReply();
-    });
+    configureRequestBody()
+      .then(async function () {
+        return await fetchPromptReply();
+      })
+      .then(async function () {
+        //TODO: resolve: last chats(user, bot) is not getting pushed in +1 step, also delete dummy empty entry done at initial index
+        await storeChats();
+      });
   };
 
   const handleVoiceInput = () => {

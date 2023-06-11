@@ -37,8 +37,9 @@ const sidebarNavItems = [
 
 const sidebarNavBottomItems = [
   {
-    display: "Clear all conversations",
-    icon: <i className="bx bx-message-alt-x"></i>,
+    display: "Chat History",
+    icon: <i className="bx bx-history"></i>,
+    to: "/chat-history",
     section: "clear",
   },
   {
@@ -75,7 +76,7 @@ const Sidebar = () => {
   }, [location]);
 
   const clearAllConversations = ()=>{
-    alert("Cleared all conversations successfully.")
+    
   }
   const switchLightMode = ()=>{
     alert("Switched to light mode.");

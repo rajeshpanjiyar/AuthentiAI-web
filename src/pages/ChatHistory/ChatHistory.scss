@@ -1,0 +1,68 @@
+
+//****************
+// Chat Interface 
+//****************
+
+.chat-container {
+    height: fit-content;
+    min-height: 78vh;
+    max-height: 78vh;
+    overflow-y: scroll;
+    border-radius: 16px;
+    padding: 30px 0px;
+}
+
+.chat-item-right {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 15px 20px;
+    align-items: center;
+    text-align: justify;
+    color: #595959;
+}
+
+.chat-item-left {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 20px;
+    text-align: justify;
+    align-items: center;
+    color: #595959;
+
+}
+
+.chat-section-left {
+    max-width: 45vw;
+    background: #e5f0fb;
+    border-radius: 30px;
+    padding: 10px 25px;
+}
+
+
+.chat-section-right {
+    max-width: 45vw;
+    background: #dbf5e5;
+    border-radius: 30px;
+    padding: 10px 25px;
+}
+
+.user-chat-icon {
+    width: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 8px;
+}
+
+.bx-bot {
+    margin: 8px;
+}
+
+.chat-user-prompt {
+    background-color: #1f1f1f14;
+}
+
+.disclaimer{
+    font-size: 12px;
+    color: rgba(15, 15, 15, 0.41);
+    text-align: center;
+}
