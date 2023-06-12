@@ -15,12 +15,12 @@ const sidebarNavItems = [
     to: "/about",
     section: "about",
   },
-  {
-    display: "Update",
-    icon: <i className="bx bx-calendar"></i>,
-    to: "/update",
-    section: "update",
-  },
+  // {
+  //   display: "Update",
+  //   icon: <i className="bx bx-calendar"></i>,
+  //   to: "/update",
+  //   section: "update",
+  // },
   {
     display: "Integration",
     icon: <i className="bx bx-cog"></i>,

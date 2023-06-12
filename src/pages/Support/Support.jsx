@@ -131,7 +131,7 @@ const Support = () => {
 
     <div className="support-title">
         <h1 className="support-h1">
-        Let us guide you every step of the way - our support team is here to help .
+        Let us guide you every step of the way - Our Support Team is here to help .
         </h1>
     </div>
      
@@ -144,7 +144,7 @@ const Support = () => {
 
       <div className="support-card">
         {/* <Card> */}
-        <h1>Send us a Message!</h1>
+        <h1 className="sendMessage-title">Send us a Message!</h1>
         {/* <Form> */}
         <form action="" className="support-form"
         onSubmit={sendEmail}

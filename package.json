@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
+    "@headlessui/react": "^1.7.15",
     "@lyket/react": "^2.1.0",
+    "@speechly/react-client": "^2.2.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -43,5 +45,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2"
   }
 }
