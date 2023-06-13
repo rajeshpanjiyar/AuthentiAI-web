@@ -1,15 +1,46 @@
-
 //****************
 // Chat Interface 
 //****************
+.chat-history-button-page {
+    background-color: #595959;
+    min-height: 85vh;
+    box-shadow: 10px 11px 30px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
 
-.chat-container {
-    height: fit-content;
-    min-height: 78vh;
-    max-height: 78vh;
-    overflow-y: scroll;
+.chat-history-button {
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
     border-radius: 16px;
+}
+
+.chat-history-button:hover{
+    cursor: pointer;
+    background: #e7e1f9;
+    color: #6F47EB !important;
+    font-weight: 600;
+    transition:ease-in 0.1s;
+}
+
+.history-chat-container {
+    height: 86vh;
+    min-height: 85vh;
+    background-color: #595959;
+    max-height: 89vh;
+    overflow-y: scroll;
     padding: 30px 0px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.chat-bot{
+    color: #e5f0fb;
 }
 
 .chat-item-right {
@@ -61,8 +92,27 @@
     background-color: #1f1f1f14;
 }
 
-.disclaimer{
+.disclaimer {
     font-size: 12px;
     color: rgba(15, 15, 15, 0.41);
     text-align: center;
+}
+
+.delete-chat{
+    outline: none;
+    border:none;
+    width: 100%;
+    height: 30px;
+    font-weight: 600;
+    background: #595959;
+    color: red !important;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+.delete-chat:hover{
+    cursor: pointer;
+    background-color: red;
+    color: #595959 !important;
+    font-weight: 600;
+    transition:ease-in 0.1s;
 }

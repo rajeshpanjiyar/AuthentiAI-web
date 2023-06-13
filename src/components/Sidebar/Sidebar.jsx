@@ -65,7 +65,6 @@ const Sidebar = () => {
   const sidebarRef = useRef();
   const location = useLocation();
 
-
   // change active index
   useEffect(() => {
     const curPath = window.location.pathname.split("/")[1];
@@ -75,21 +74,18 @@ const Sidebar = () => {
     setActiveIndex(curPath.length === 0 ? 0 : activeItem);
   }, [location]);
 
-  const clearAllConversations = ()=>{
-    
-  }
-  const switchLightMode = ()=>{
+  const getAllConversations = () => {};
+  const switchLightMode = () => {
     alert("Switched to light mode.");
-  }
-  const performLogout = ()=>{
-    alert("Successfully logged out.")
-  }
-
+  };
+  const performLogout = () => {
+    alert("Successfully logged out.");
+  };
 
   const handleBottomSidebar = (index) => {
     switch (index) {
       case 0:
-        clearAllConversations();
+        getAllConversations();
         break;
       case 1:
         switchLightMode();
@@ -111,9 +107,7 @@ const Sidebar = () => {
           height="30"
           style={{ margin: "5px 10px 5px 0px" }}
         />
-      <Link to="/">
-        AuthentiAI
-      </Link>
+        <Link to="/">AuthentiAI</Link>
       </div>
       <div ref={sidebarRef} className="sidebar__menu">
         {sidebarNavItems.map((item, index) => (
@@ -135,7 +129,7 @@ const Sidebar = () => {
               key={index}
               onClick={() => handleBottomSidebar(index)}
             >
-              <div className={`sidebar__menu__item `}>
+              <div className={`sidebar__menu__item sidebar__menu__item-bottom`}>
                 <div className="sidebar__menu__item__icon">{item.icon}</div>
                 <div className="sidebar__menu__item__text">{item.display}</div>
               </div>

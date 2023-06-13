@@ -7,11 +7,12 @@ import Axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { BODY, REQUEST_BODY } from "./RequestBodyConfiguration";
+import { systemMessage } from "./systemMessage";
 
 const constructRequestBody = (prompt) => {
   const body = BODY;
-  const message = { role: "user", content: prompt };
-  body.messages[1] = message;
+  // const message = { role: "user", content: prompt };
+  body.messages = prompt
   return JSON.stringify(body);
 };
 
@@ -22,12 +23,13 @@ const promptExamples = [
 ];
 
 const chatReactElementArray = [];
+const chatLog = [systemMessage];
+var currentRR = { user: "", bot: "" };
 
 const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [chats, setChats] = useState([]);
-  const [currentRR, setCurrentRR] = useState({ user: "", bot: "" });
   const [chatting, setChatting] = useState(false);
   const [requestOptions, setRequestOptions] = useState(REQUEST_BODY);
   const myRef = useRef(null);
@@ -85,7 +87,7 @@ const Main = () => {
           timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
         };
       }
-      setCurrentRR(tempChats[lastIndex]);
+      currentRR = tempChats[lastIndex];
       setChats(tempChats);
       chatReactElementArray.push(chatMessageElement);
       const X = React.createElement("div", {}, chatReactElementArray);
@@ -103,6 +105,8 @@ const Main = () => {
         .then((data) => {
           console.log("data", data);
           reply = data?.choices[0]?.message?.content;
+          chatLog.push( {role: 'assistant', content: reply });
+          console.log('ChatLog', chatLog);
         })
         .catch((err) => {
           reply = "Please try again later!";
@@ -116,7 +120,9 @@ const Main = () => {
   function configureRequestBody() {
     return new Promise(function (resolve) {
       const temp = requestOptions;
-      temp.body = constructRequestBody(inputValue);
+      chatLog.push( {role: 'user', content: inputValue });
+      console.log('ChatLog', chatLog);
+      temp.body = constructRequestBody(chatLog);
       setRequestOptions(temp);
       resolve();
     });
