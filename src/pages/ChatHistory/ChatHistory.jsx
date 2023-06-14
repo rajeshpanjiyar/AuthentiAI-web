@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import moment from "moment";
 import "./ChatHistory.scss";
 import Axios from "axios";
-import {message} from 'antd';
+import { message } from "antd";
 
 var chatData = [];
 var chatReactElementArray = [];
@@ -49,7 +49,7 @@ const ChatHistory = () => {
           )
         );
       }
-      
+
       chatReactElementArray.push(chatMessageElement);
       const X = React.createElement("div", {}, chatReactElementArray);
       ReactDOM.render(X, document.getElementById("chatContainer"));
@@ -76,8 +76,8 @@ const ChatHistory = () => {
         setChatsOn(true);
       })
       .catch((error) => {
-        if(!chatsOn){
-          message.info("Chat history is empty.")
+        if (!chatsOn) {
+          message.info("Chat history is empty.");
         }
         console.error(error);
       });
@@ -104,13 +104,23 @@ const ChatHistory = () => {
   return (
     <div className="chat-history-page">
       {!chatsOn && (
-        <div className = "chat-history-button-page">
-          <button className = "chat-history-button" onClick={fetchAllChats}>Get All Chats</button>
+        <div
+          className="chat-history-button-page"
+          style={{ minHeight: chatsOn ? "85vh" : "89vh" }}
+        >
+          <button className="chat-history-button" onClick={fetchAllChats}>
+            Get All Chats
+          </button>
         </div>
       )}
-        <div className={chatsOn?"history-chat-container":""} id="chatContainer"></div>
+      <div
+        className={chatsOn ? "history-chat-container" : ""}
+        id="chatContainer"
+      ></div>
       {chatsOn && (
-          <button className = "delete-chat" onClick={deleteAllChats}>Delete All Chats</button>
+        <button className="delete-chat" onClick={deleteAllChats}>
+          Delete All Chats
+        </button>
       )}
     </div>
   );

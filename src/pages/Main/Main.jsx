@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { BODY, REQUEST_BODY } from "./RequestBodyConfiguration";
 import { systemMessage } from "./systemMessage";
+import { useSharedVariables } from '../../components/ShareableStates/ShareableState';
+import CameraModal from "../../components/CameraModal/CameraModal";
 
 const constructRequestBody = (prompt) => {
   const body = BODY;
@@ -30,7 +32,7 @@ const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [chats, setChats] = useState([]);
-  const [chatting, setChatting] = useState(false);
+  const { chatting, setChatting, setOpen } = useSharedVariables ();
   const [requestOptions, setRequestOptions] = useState(REQUEST_BODY);
   const myRef = useRef(null);
 
@@ -201,7 +203,7 @@ const Main = () => {
   return (
     <div className={!chatting ? "main" : ""}>
       {chatting && <div id="chatContainer" className="chat-container"></div>}
-
+      <CameraModal />
       <div>
         {!chatting && (
           <div className="title-section">
@@ -217,6 +219,7 @@ const Main = () => {
           className="button-row"
           style={{ width: chatting ? "72vw" : "" }}
         >
+          <div className="webcam-button" onClick={()=> setOpen(true)}>Webcam</div>
           <input
             type="text"
             value={inputValue}
