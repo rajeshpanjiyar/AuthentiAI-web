@@ -1,5 +1,5 @@
 import "./Main.scss";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Fragment} from "react";
 import { Link } from "react-router-dom";
 import * as ReactDOM from "react-dom";
 import { message, Spin } from "antd";
@@ -10,6 +10,9 @@ import { BODY, REQUEST_BODY } from "./RequestBodyConfiguration";
 import { systemMessage } from "./systemMessage";
 import { useSharedVariables } from "../../components/ShareableStates/ShareableState";
 import CameraModal from "../../components/CameraModal/CameraModal";
+import { auth } from "../utility/Firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 
 const constructRequestBody = (prompt) => {
   const body = BODY;
@@ -35,6 +38,10 @@ const Main = () => {
   const { chatting, setChatting, setOpen } = useSharedVariables();
   const [requestOptions, setRequestOptions] = useState(REQUEST_BODY);
   const myRef = useRef(null);
+  const [user] = useAuthState(auth);
+
+
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,6 +50,7 @@ const Main = () => {
   });
 
   function addChatMessage(bot, message) {
+
     return new Promise(async function (resolve) {
       var tempChats = chats;
       const chatElement = {
@@ -220,6 +228,7 @@ const Main = () => {
   };
 
   return (
+    <Fragment>
     <div className={!chatting ? "main" : ""}>
       {chatting && <div id="chatContainer" className="chat-container"></div>}
       <CameraModal />
@@ -325,6 +334,7 @@ const Main = () => {
         </div>
       )}
     </div>
+    </Fragment>
   );
 };
 

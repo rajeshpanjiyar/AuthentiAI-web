@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&family=Montserrat:wght@200;400;500;700;800&family=Questrial&family=Raleway:wght@300;400;600;700;800;900&family=Roboto+Serif:opsz,wght@8..144,100;8..144,300;8..144,400;8..144,500&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+*{
+  font-family: 'Inter', sans-serif;
+}
+
+.signInCover{
+  
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 72px;
+  bottom: 0;
+  /* background-color: rgb(189, 189,189, 0.6);
+   */
+  }
+  
+
+
+  .signInContainer{
+
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  height: 55vh;
+  width: 29vw;
+  transform: translate(-50% , -50%);
+  border: 1px solid rgb(131, 131, 131);
+  box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 30%);
+  /* border: 2px solid whitesmoke; */
+  border-radius: 15px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#SignInformId{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 27vh;
+  width: 30vw;
+}
+
+
+#SignInFormInput{
+  text-align: center;
+  /* background-color: gray; */
+  opacity: 1;
+  width: 23vw;
+  
+  border-radius: 8px;
+  padding: 2px;
+  /* background: rgba(0, 0, 0, 0.3); */
+  /* border: 2px solid rgb(136 44 240); */
+  background: rgb(240,240,240);
+  border: 1px solid black;
+  height: 54px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* outline: none */
+}
+
+#SignInFormInput::placeholder{
+  color: rgb(68, 68, 68);
+   /* border: 2px solid rgb(136 44 240);  */
+  opacity: 1;
+}
+  
+#SignInformId button{
+  width: 23vw;
+  opacity: 0.91;
+  padding: 10px;
+  height: 5vh;
+}
+
+.signInHeading{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: wheat;
+}
+
+.signInHeading h2{
+  color: black;
+  font-size: 3.5rem;
+  margin-bottom: 3px;
+}
+
+
+.hrDown{
+ 
+  border: 1px solid black;
+  width: 140px;
+  margin: 12px;
+
+}
+
+.lineBreakAuth{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+}
+
+#googleButton{
+  margin-bottom: 20px;
+ background-color:  #FFFFFF;
+ color: black;
+ display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+}

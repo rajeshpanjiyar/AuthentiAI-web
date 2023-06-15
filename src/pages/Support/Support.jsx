@@ -1,25 +1,7 @@
 import "./Support.scss";
 import React, { useRef , useState } from 'react';
 import emailjs from '@emailjs/browser'; 
-
-// const Card = props => (
-//     <div className="support-card">
-//       {/*<div className="waves">
-//       </div>*/}
-//       {props.children}
-//     </div>
-//   );
-
-
-  
-//   const Form = props => (
-//     <form className="support-form"
-//     ref={form} 
-//     onSubmit={sendEmail}
-//     >{props.children}</form>
-//   );
-
-
+import { Fragment } from "react";
   
   const TextInput = props => (
     <div
@@ -127,11 +109,12 @@ const Support = () => {
   const { name, email, message } = state;
 
   return (
+    <Fragment>
     <div className="support-container">
 
     <div className="support-title">
         <h1 className="support-h1">
-        Let us guide you every step of the way - Our Support Team is here to help.
+        Let us guide you every step of the way - our support team is here to help .
         </h1>
     </div>
      
@@ -144,7 +127,7 @@ const Support = () => {
 
       <div className="support-card">
         {/* <Card> */}
-        <h1>Send us a Message!</h1>
+        <h1 className="sendMessage-title">Send us a Message!</h1>
         {/* <Form> */}
         <form action="" className="support-form"
         onSubmit={sendEmail}
@@ -176,6 +159,7 @@ const Support = () => {
       {/* </Card> */}
       </div>
     </div>
+    </Fragment>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState , Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Sidebar.scss";
 
@@ -15,12 +15,12 @@ const sidebarNavItems = [
     to: "/about",
     section: "about",
   },
-  {
-    display: "Update",
-    icon: <i className="bx bx-calendar"></i>,
-    to: "/update",
-    section: "update",
-  },
+  // {
+  //   display: "Update",
+  //   icon: <i className="bx bx-calendar"></i>,
+  //   to: "/update",
+  //   section: "update",
+  // },
   {
     display: "Integration",
     icon: <i className="bx bx-cog"></i>,
@@ -99,6 +99,7 @@ const Sidebar = () => {
   };
 
   return (
+    <Fragment>
     <div className="sidebar">
       <div className="sidebar__logo">
         <img
@@ -138,6 +139,7 @@ const Sidebar = () => {
         </div>
       </div>
     </div>
+    </Fragment>
   );
 };
 
