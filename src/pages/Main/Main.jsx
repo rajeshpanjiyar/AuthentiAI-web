@@ -2,13 +2,13 @@ import "./Main.scss";
 import React, { useState, useRef, useEffect, Fragment} from "react";
 import { Link } from "react-router-dom";
 import * as ReactDOM from "react-dom";
-import { message } from "antd";
+import { message, Spin } from "antd";
 import Axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 import { BODY, REQUEST_BODY } from "./RequestBodyConfiguration";
 import { systemMessage } from "./systemMessage";
-import { useSharedVariables } from '../../components/ShareableStates/ShareableState';
+import { useSharedVariables } from "../../components/ShareableStates/ShareableState";
 import CameraModal from "../../components/CameraModal/CameraModal";
 import { auth } from "../utility/Firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -17,7 +17,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const constructRequestBody = (prompt) => {
   const body = BODY;
   // const message = { role: "user", content: prompt };
-  body.messages = prompt
+  body.messages = prompt;
   return JSON.stringify(body);
 };
 
@@ -35,7 +35,7 @@ const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [chats, setChats] = useState([]);
-  const { chatting, setChatting, setOpen } = useSharedVariables ();
+  const { chatting, setChatting, setOpen } = useSharedVariables();
   const [requestOptions, setRequestOptions] = useState(REQUEST_BODY);
   const myRef = useRef(null);
   const [user] = useAuthState(auth);
@@ -71,6 +71,11 @@ const Main = () => {
             message
           )
         );
+        const lastInd = chatReactElementArray.length - 1;
+        chatReactElementArray[lastInd] = chatMessageElement;
+        const X = React.createElement("div", {}, chatReactElementArray);
+        ReactDOM.render(X, document.getElementById("chatContainer"));
+
         tempChats[lastIndex].bot = {
           message: message,
           timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
@@ -90,6 +95,23 @@ const Main = () => {
             message
           )
         );
+
+        const tempChatMessageElement = React.createElement(
+          "div",
+          { className: "chat-item-left" },
+          React.createElement("i", { className: "bx bx-bot" }),
+          React.createElement(
+            "div",
+            { className: "chat-section-left", ref: myRef },
+            "Loading.."
+          )
+        );
+
+        chatReactElementArray.push(chatMessageElement);
+        chatReactElementArray.push(tempChatMessageElement );
+        const X = React.createElement("div", {}, chatReactElementArray);
+        ReactDOM.render(X, document.getElementById("chatContainer"));
+
         tempChats.push(chatElement);
         lastIndex = tempChats.length - 1;
         tempChats[lastIndex].user = {
@@ -99,9 +121,6 @@ const Main = () => {
       }
       currentRR = tempChats[lastIndex];
       setChats(tempChats);
-      chatReactElementArray.push(chatMessageElement);
-      const X = React.createElement("div", {}, chatReactElementArray);
-      ReactDOM.render(X, document.getElementById("chatContainer"));
       resolve();
     });
   }
@@ -115,8 +134,8 @@ const Main = () => {
         .then((data) => {
           console.log("data", data);
           reply = data?.choices[0]?.message?.content;
-          chatLog.push( {role: 'assistant', content: reply });
-          console.log('ChatLog', chatLog);
+          chatLog.push({ role: "assistant", content: reply });
+          console.log("ChatLog", chatLog);
         })
         .catch((err) => {
           reply = "Please try again later!";
@@ -130,8 +149,8 @@ const Main = () => {
   function configureRequestBody() {
     return new Promise(function (resolve) {
       const temp = requestOptions;
-      chatLog.push( {role: 'user', content: inputValue });
-      console.log('ChatLog', chatLog);
+      chatLog.push({ role: "user", content: inputValue });
+      console.log("ChatLog", chatLog);
       temp.body = constructRequestBody(chatLog);
       setRequestOptions(temp);
       resolve();
@@ -228,7 +247,9 @@ const Main = () => {
           className="button-row"
           style={{ width: chatting ? "72vw" : "" }}
         >
-          <div className="webcam-button" onClick={()=> setOpen(true)}>Webcam</div>
+          <div className="webcam-button" onClick={() => setOpen(true)}>
+            Webcam
+          </div>
           <input
             type="text"
             value={inputValue}
@@ -265,8 +286,7 @@ const Main = () => {
       </div>
       {!chatting && (
         <div className="prompt-section">
-          <div className="prompt-examples-title"
-          >Prompt Examples</div>
+          <div className="prompt-examples-title">Prompt Examples</div>
           {promptExamples.map((item, index) => (
             <Link
               to={item.to}
