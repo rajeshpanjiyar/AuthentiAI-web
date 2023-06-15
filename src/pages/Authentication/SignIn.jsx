@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./auth.styles.css";
+import "./authentication.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, googleAuthProvider } from "../utility/Firebase/firebase";
 import {
@@ -105,7 +105,7 @@ const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
       <div className="signInContainer">
         <div className="signInHeading">
           <h2>Welcome</h2>
-          <p>Log in to access Polymath Playground</p>
+          <p>Log in to access Authenti AI service</p>
           {/* <hr className="hrDown" /> */}
         </div>
         <form onSubmit={onSumbitHandler} id="SignInformId">

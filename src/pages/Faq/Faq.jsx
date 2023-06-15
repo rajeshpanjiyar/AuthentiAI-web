@@ -49,30 +49,30 @@ const faqs = [
   ]
   export default function Faq() {
     return (
-      <div className="w-full h-100vh px-4 pt-16 faq-container">
-        <div className="mx-auto rounded-2xl p-2 text-lg">
-          <h1 className='text-center text-4xl py-4 faq-title'>FAQs</h1>
+      <div className="faq-container">
+          <h1 className='faq-title'>FAQs</h1>
           {faqs.map((faq) => (
             <Disclosure>
               {({ open}) => (
-                <>
+                <div className="faq-buttons">
                     <div key={faq.id}>
-                      <Disclosure.Button className="flex w-full justify-between rounded-lg  py-3 mb-3 text-left font-medium text-black-600 faq-button-chip">
+                      <Disclosure.Button className="faq-button-chip">
                         <span>{faq.question}</span>
+                        <span>
                         { open ? <BiMinus /> : <BsPlusLg />}
+                        </span>
                       </Disclosure.Button>
                       {open && (
-                        <Disclosure.Panel static className="text-gray-500 flex w-full justify-between rounded-lg px-4 mb-2 text-left text-sm font-medium faq-answer-panel">
+                        <Disclosure.Panel static className="faq-answer-panel">
                           {faq.answer}
                         </Disclosure.Panel>
                       )}
                     </div>
-                </>
+                </div>
               )}
             </Disclosure>
           ))}
         </div>
-      </div>
     )
   }
 

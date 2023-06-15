@@ -13,39 +13,43 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import ChatHistory from "./pages/ChatHistory/ChatHistory";
 import Authentication from "./pages/Authentication/Authentication.component";
 import ProtectedRoute from "./pages/Authentication/ProtectedRoute";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./pages/utility/Firebase/firebase";
 function App() {
+  const [user] = useAuthState(auth);
+
   return (
     <Fragment>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<AppLayout />}>
-        <Route index element={<Authentication />} />
-          <Route index element=
-           {<ProtectedRoute Component={Main} />}
-          />
-          <Route path="/about" element=
-           {<ProtectedRoute Component={About} />}
-          />
-          <Route path="/update" element={
-
-            <ProtectedRoute Component={Update} />
-          } />
-          <Route path="/integration" element={
-            <ProtectedRoute Component={Integration} />
-          } />
-          <Route path="/support" element={
-            <ProtectedRoute Component={Support} />
-          } />
-          <Route path="/faq" element={
-            <ProtectedRoute Component={Faq} />
-          } />
-          <Route path="/chat-history" element={
-            <ProtectedRoute Component={ChatHistory} />
-          } />
-          <Route path="/*" element={<PageNotFound />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+        {!user && <Route index element={<Authentication />} />}
+          <Route path="/" element={<AppLayout />}>
+            <Route index element={<ProtectedRoute Component={Main} />} />
+            <Route
+              path="/about"
+              element={<ProtectedRoute Component={About} />}
+            />
+            <Route
+              path="/update"
+              element={<ProtectedRoute Component={Update} />}
+            />
+            <Route
+              path="/integration"
+              element={<ProtectedRoute Component={Integration} />}
+            />
+            <Route
+              path="/support"
+              element={<ProtectedRoute Component={Support} />}
+            />
+            <Route path="/faq" element={<ProtectedRoute Component={Faq} />} />
+            <Route
+              path="/chat-history"
+              element={<ProtectedRoute Component={ChatHistory} />}
+            />
+            <Route path="/*" element={<PageNotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </Fragment>
   );
 }

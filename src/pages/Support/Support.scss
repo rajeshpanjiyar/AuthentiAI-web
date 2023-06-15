@@ -1,172 +1,170 @@
-  $primary: #e14;
-  $secondary: #124;
-  $accent: #e72;
+$primary: #e14;
+$secondary: #124;
+$accent: #e72;
 
-  body {
-    font: 400 16px Montserrat, sans-serif;
-    padding: 0;
-    margin: 0;
+body {
+  font: 400 16px Montserrat, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.support-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px 0px 20px;
+  align-items: center;
+  background-color: #6F47EB;
+  min-height: 89vh;
+  box-shadow: 10px 11px 30px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+}
+
+
+.support-title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  padding:8px;
+  margin: 10px 0px 10px 0px;
+  background-color: #6F47EB;
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.support-para-text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 18px;
+  margin: 5px 0px 30px 0px;
+  color: white;
+}
+
+.support-h1 {
+  margin: 0.2rem 1rem;
+  font-size: 1.6rem;
+}
+
+.support-card h1{
+  color:#6F47EB;
+  margin: 1.2rem 2rem 0;
+  font-size: 1.62rem;
+}
+
+.support-card {
+  width: 50vw;
+  min-width: 300px;
+  height: 390px;
+  margin-top: 3vw;
+  background-color: #F3F3F3;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #a4a4a4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.waves {
+  height: 80px;
+  background: linear-gradient(to bottom left, $primary, $accent);
+}
+
+.support-form {
+  padding: 2rem;
+}
+
+.support-button {
+  display: block;
+  width: 100%;
+  background-color: #6F47EB;
+  border: none;
+  border-radius: 3px;
+  padding: 1ch;
+  font-size: 1rem;
+  color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+@mixin input {
+  display: block;
+  width: 100%;
+  border: 1px solid #a4a4a4;
+  padding: 1ch;
+  border-radius: 3px;
+  transition: 150ms ease;
+  outline: none;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #F3F3F3;
+}
+
+@mixin input-focus {
+  border-color: #6F47EB;
+}
+
+@mixin label {
+  position: absolute;
+  top: 1ch;
+  left: 1ch;
+  padding: 0 .5ch;
+  pointer-events: none;
+  transition: 150ms ease;
+  color: #888;
+}
+
+@mixin label-focus {
+  position: absolute;
+  top: 0;
+  font-size: 0.9em;
+  color: #6F47EB;
+  font-weight: bold;
+  transform: translateY(-50%);
+  background-color: #F3F3F3;
+  font-weight: 600;
+}
+
+
+
+.support-text-input {
+  position: relative;
+  margin-bottom: 1rem;
+
+  label {
+    @include label;
   }
 
-  .support-container {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 20px 0px 20px;
-    align-items: center;
-    background-color: #6F47EB;
-    min-height: 89vh;
-    box-shadow: 10px 11px 30px rgba(0, 0, 0, 0.25);
-    border-radius: 16px;
-  }
-  
-
-  .support-title {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    padding:8px;
-    margin: 10px 0px 100px 0px;
-    background-color: #6F47EB;
-    color: white;
-    border-bottom: 1px solid white;
+  label.label-focus {
+    @include label-focus;
   }
 
-  .support-para-text {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    padding: 8px 18px;
-    margin: 5px 0px 30px 0px;
-    color: white;
+  input {
+    @include input;
   }
 
-  .support-h1 {
-    margin: 0.2rem 1rem;
-    font-size: 1.6rem;
+  input.input-focus {
+    @include input-focus;
+  }
+}
+
+.text-area {
+  position: relative;
+  margin-bottom: 1rem;
+
+  label {
+    @include label;
   }
 
-  .support-card h1{
-    color:#6F47EB;
+  label.label-focus {
+    @include label-focus;
   }
 
-  .support-card {
-    width: 50vw;
-    min-width: 300px;
-    height: 400px;
-    background-color: #F3F3F3;
-    border-radius: 5px;
-    overflow: hidden;
-    border: 1px solid #a4a4a4;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .waves {
-    height: 80px;
-    background: linear-gradient(to bottom left, $primary, $accent);
-  }
-
-  h1 {
-    margin: 2rem 2rem 0;
-    font-size: 1.62rem;
-  }
-
-  .support-form {
-    padding: 2rem;
-  }
-
-  .support-button {
-    display: block;
+  textarea {
+    @include input;
+    height: 6em;
     width: 100%;
-    background-color: #6F47EB;
-    border: none;
-    border-radius: 3px;
-    padding: 1ch;
-    font-size: 1rem;
-    color: #fff;
-    font-family: inherit;
-    cursor: pointer;
   }
 
-  @mixin input {
-    display: block;
-    width: 100%;
-    border: 1px solid #a4a4a4;
-    padding: 1ch;
-    border-radius: 3px;
-    transition: 150ms ease;
-    outline: none;
-    font-size: 1rem;
-    font-family: inherit;
-    background-color: #F3F3F3;
+  textarea.input-focus {
+    @include input-focus;
   }
-
-  @mixin input-focus {
-    border-color: #6F47EB;
-  }
-
-  @mixin label {
-    position: absolute;
-    top: 1ch;
-    left: 1ch;
-    padding: 0 .5ch;
-    pointer-events: none;
-    transition: 150ms ease;
-    color: #888;
-  }
-
-  @mixin label-focus {
-    position: absolute;
-    top: 0;
-    font-size: 0.9em;
-    color: #6F47EB;
-    font-weight: bold;
-    transform: translateY(-50%);
-    background-color: #F3F3F3;
-    font-weight: 600;
-  }
-
-
-
-  .support-text-input {
-    position: relative;
-    margin-bottom: 1rem;
-
-    label {
-      @include label;
-    }
-
-    label.label-focus {
-      @include label-focus;
-    }
-
-    input {
-      @include input;
-    }
-
-    input.input-focus {
-      @include input-focus;
-    }
-  }
-
-  .text-area {
-    position: relative;
-    margin-bottom: 1rem;
-
-    label {
-      @include label;
-    }
-
-    label.label-focus {
-      @include label-focus;
-    }
-
-    textarea {
-      @include input;
-      height: 6em;
-      width: 100%;
-    }
-
-    textarea.input-focus {
-      @include input-focus;
-    }
-  }
+}
