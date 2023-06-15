@@ -1,0 +1,118 @@
+//****************
+// Chat Interface 
+//****************
+.chat-history-button-page {
+    background-color: #595959;
+    min-height: 85vh;
+    box-shadow: 10px 11px 30px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.chat-history-button {
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 16px;
+}
+
+.chat-history-button:hover{
+    cursor: pointer;
+    background: #e7e1f9;
+    color: #6F47EB !important;
+    font-weight: 600;
+    transition:ease-in 0.1s;
+}
+
+.history-chat-container {
+    height: 86vh;
+    min-height: 85vh;
+    background-color: #595959;
+    max-height: 89vh;
+    overflow-y: scroll;
+    padding: 30px 0px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.chat-bot{
+    color: #e5f0fb;
+}
+
+.chat-item-right {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 15px 20px;
+    align-items: center;
+    text-align: justify;
+    color: #595959;
+}
+
+.chat-item-left {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 20px;
+    text-align: justify;
+    align-items: center;
+    color: #595959;
+
+}
+
+.chat-section-left {
+    max-width: 45vw;
+    background: #e5f0fb;
+    border-radius: 30px;
+    padding: 10px 25px;
+}
+
+
+.chat-section-right {
+    max-width: 45vw;
+    background: #dbf5e5;
+    border-radius: 30px;
+    padding: 10px 25px;
+}
+
+.user-chat-icon {
+    width: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 8px;
+}
+
+.bx-bot {
+    margin: 8px;
+}
+
+.chat-user-prompt {
+    background-color: #1f1f1f14;
+}
+
+.disclaimer {
+    font-size: 12px;
+    color: rgba(15, 15, 15, 0.41);
+    text-align: center;
+}
+
+.delete-chat{
+    outline: none;
+    border:none;
+    width: 100%;
+    height: 30px;
+    font-weight: 600;
+    background: #595959;
+    color: red !important;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+.delete-chat:hover{
+    cursor: pointer;
+    background-color: red;
+    color: #595959 !important;
+    font-weight: 600;
+    transition:ease-in 0.1s;
+}

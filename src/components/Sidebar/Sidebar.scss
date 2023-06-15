@@ -55,12 +55,18 @@
     }
 }
 
-.sidebar-bottom{
+.sidebar-bottom {
     position: fixed;
     bottom: 30px;
 }
 
-.sidebar__logo{
+.sidebar__menu__item-bottom:hover {
+    color: #6F47EB !important;
+    font-weight: 600;
+    transition: ease-in 0.1s;
+}
+
+.sidebar__logo {
 
     font-family: 'Inter', sans-serif;
     font-weight: 700;

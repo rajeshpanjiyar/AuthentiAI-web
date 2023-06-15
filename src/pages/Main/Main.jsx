@@ -1,14 +1,23 @@
 import "./Main.scss";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Fragment} from "react";
 import { Link } from "react-router-dom";
 import * as ReactDOM from "react-dom";
 import { message } from "antd";
+import Axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 import { BODY, REQUEST_BODY } from "./RequestBodyConfiguration";
+import { systemMessage } from "./systemMessage";
+import { useSharedVariables } from '../../components/ShareableStates/ShareableState';
+import CameraModal from "../../components/CameraModal/CameraModal";
+import { auth } from "../utility/Firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 
 const constructRequestBody = (prompt) => {
   const body = BODY;
-  const message = { role: "user", content: prompt };
-  body.messages[1] = message;
+  // const message = { role: "user", content: prompt };
+  body.messages = prompt
   return JSON.stringify(body);
 };
 
@@ -19,14 +28,20 @@ const promptExamples = [
 ];
 
 const chatReactElementArray = [];
+const chatLog = [systemMessage];
+var currentRR = { user: "", bot: "" };
 
 const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [chats, setChats] = useState([]);
-  const [chatting, setChatting] = useState(false);
+  const { chatting, setChatting, setOpen } = useSharedVariables ();
   const [requestOptions, setRequestOptions] = useState(REQUEST_BODY);
   const myRef = useRef(null);
+  const [user] = useAuthState(auth);
+
+
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,12 +50,16 @@ const Main = () => {
   });
 
   function addChatMessage(bot, message) {
+
     return new Promise(async function (resolve) {
       var tempChats = chats;
-      tempChats.push({ isBot: bot, data: message }); // Add the new message to the chat array
-      setChats(tempChats);
-
+      const chatElement = {
+        user: { message: "", timestamp: "" },
+        bot: { message: "", timestamp: "" },
+      };
       var chatMessageElement = null;
+      var lastIndex = tempChats.length - 1;
+
       if (bot) {
         chatMessageElement = React.createElement(
           "div",
@@ -52,6 +71,10 @@ const Main = () => {
             message
           )
         );
+        tempChats[lastIndex].bot = {
+          message: message,
+          timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
+        };
       } else {
         chatMessageElement = React.createElement(
           "div",
@@ -67,12 +90,18 @@ const Main = () => {
             message
           )
         );
+        tempChats.push(chatElement);
+        lastIndex = tempChats.length - 1;
+        tempChats[lastIndex].user = {
+          message: message,
+          timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
+        };
       }
-
+      currentRR = tempChats[lastIndex];
+      setChats(tempChats);
       chatReactElementArray.push(chatMessageElement);
       const X = React.createElement("div", {}, chatReactElementArray);
       ReactDOM.render(X, document.getElementById("chatContainer"));
-
       resolve();
     });
   }
@@ -86,6 +115,8 @@ const Main = () => {
         .then((data) => {
           console.log("data", data);
           reply = data?.choices[0]?.message?.content;
+          chatLog.push( {role: 'assistant', content: reply });
+          console.log('ChatLog', chatLog);
         })
         .catch((err) => {
           reply = "Please try again later!";
@@ -99,20 +130,44 @@ const Main = () => {
   function configureRequestBody() {
     return new Promise(function (resolve) {
       const temp = requestOptions;
-      temp.body = constructRequestBody(inputValue);
+      chatLog.push( {role: 'user', content: inputValue });
+      console.log('ChatLog', chatLog);
+      temp.body = constructRequestBody(chatLog);
       setRequestOptions(temp);
       resolve();
     });
+  }
+
+  async function storeChats() {
+    const postData = {
+      user_id: "12345",
+      chats: currentRR,
+    };
+
+    await Axios.post(
+      `${process.env.REACT_APP_SERVER_BASE_URL}/api/chathistory`,
+      postData
+    )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setChatting(true);
     setInputValue("");
-
-    configureRequestBody().then(async function () {
-      return await fetchPromptReply();
-    });
+    configureRequestBody()
+      .then(async function () {
+        return await fetchPromptReply();
+      })
+      .then(async function () {
+        //TODO: resolve: last chats(user, bot) is not getting pushed in +1 step, also delete dummy empty entry done at initial index
+        await storeChats();
+      });
   };
 
   const handleVoiceInput = () => {
@@ -154,9 +209,10 @@ const Main = () => {
   };
 
   return (
+    <Fragment>
     <div className={!chatting ? "main" : ""}>
       {chatting && <div id="chatContainer" className="chat-container"></div>}
-
+      <CameraModal />
       <div>
         {!chatting && (
           <div className="title-section">
@@ -172,6 +228,7 @@ const Main = () => {
           className="button-row"
           style={{ width: chatting ? "72vw" : "" }}
         >
+          <div className="webcam-button" onClick={()=> setOpen(true)}>Webcam</div>
           <input
             type="text"
             value={inputValue}
@@ -257,6 +314,7 @@ const Main = () => {
         </div>
       )}
     </div>
+    </Fragment>
   );
 };
 
