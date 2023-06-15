@@ -126,9 +126,7 @@ const Support = () => {
 
 
       <div className="support-card">
-        {/* <Card> */}
         <h1 className="sendMessage-title">Send us a Message!</h1>
-        {/* <Form> */}
         <form action="" className="support-form"
         onSubmit={sendEmail}
         ref={form}
@@ -154,9 +152,7 @@ const Support = () => {
         <button className="support-button">
             Send
         </button>
-        {/* </Form> */}
         </form>
-      {/* </Card> */}
       </div>
     </div>
     </Fragment>

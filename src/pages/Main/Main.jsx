@@ -40,9 +40,6 @@ const Main = () => {
   const myRef = useRef(null);
   const [user] = useAuthState(auth);
 
-
-
-
   useEffect(() => {
     setTimeout(() => {
       myRef?.current?.scrollIntoView({ behavior: "smooth" });
@@ -103,7 +100,7 @@ const Main = () => {
           React.createElement(
             "div",
             { className: "chat-section-left", ref: myRef },
-            "Loading.."
+            "Typing.."
           )
         );
 
@@ -135,7 +132,6 @@ const Main = () => {
           console.log("data", data);
           reply = data?.choices[0]?.message?.content;
           chatLog.push({ role: "assistant", content: reply });
-          console.log("ChatLog", chatLog);
         })
         .catch((err) => {
           reply = "Please try again later!";
@@ -150,7 +146,6 @@ const Main = () => {
     return new Promise(function (resolve) {
       const temp = requestOptions;
       chatLog.push({ role: "user", content: inputValue });
-      console.log("ChatLog", chatLog);
       temp.body = constructRequestBody(chatLog);
       setRequestOptions(temp);
       resolve();
@@ -159,7 +154,7 @@ const Main = () => {
 
   async function storeChats() {
     const postData = {
-      user_id: "12345",
+      user_id: user?.uid,
       chats: currentRR,
     };
 

@@ -4,12 +4,15 @@ import moment from "moment";
 import "./ChatHistory.scss";
 import Axios from "axios";
 import { message } from "antd";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from "../utility/Firebase/firebase";
 
 var chatData = [];
 var chatReactElementArray = [];
 const ChatHistory = () => {
   const [chatsOn, setChatsOn] = useState(false);
   const myRef = useRef(null);
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     setTimeout(() => {
@@ -59,7 +62,7 @@ const ChatHistory = () => {
 
   const fetchAllChats = async () => {
     chatReactElementArray = [];
-    const id = "12345";
+    const id = user?.uid;
     await Axios.get(
       `${process.env.REACT_APP_SERVER_BASE_URL}/api/get-all-chats/${id}`
     )
@@ -84,7 +87,7 @@ const ChatHistory = () => {
   };
 
   const deleteAllChats = async () => {
-    const id = "12345";
+    const id = user?.uid;
     await Axios.delete(
       `${process.env.REACT_APP_SERVER_BASE_URL}/api/delete-all-chats/${id}`
     )

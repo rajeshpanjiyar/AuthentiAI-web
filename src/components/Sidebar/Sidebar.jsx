@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState , Fragment } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useRef, useState, Fragment } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Modal } from "antd";
+import { auth } from "../../pages/utility/Firebase/firebase";
 import "./Sidebar.scss";
 
 const sidebarNavItems = [
@@ -15,12 +17,6 @@ const sidebarNavItems = [
     to: "/about",
     section: "about",
   },
-  // {
-  //   display: "Update",
-  //   icon: <i className="bx bx-calendar"></i>,
-  //   to: "/update",
-  //   section: "update",
-  // },
   {
     display: "Integration",
     icon: <i className="bx bx-cog"></i>,
@@ -62,6 +58,7 @@ const sidebarNavBottomItems = [
 
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
   const sidebarRef = useRef();
   const location = useLocation();
 
@@ -78,8 +75,23 @@ const Sidebar = () => {
   const switchLightMode = () => {
     alert("Switched to light mode.");
   };
+
+  const nav = useNavigate();
+  const confirmLogout = () => {
+    auth
+      .signOut()
+      .then(() => {
+        console.log("User Signed Out");
+        localStorage.removeItem("user");
+        nav("/");
+      })
+      .catch((err) => {
+        console.log("Error in sign out ", err);
+      });
+  };
+
   const performLogout = () => {
-    alert("Successfully logged out.");
+    setModalOpen(true);
   };
 
   const handleBottomSidebar = (index) => {
@@ -100,45 +112,63 @@ const Sidebar = () => {
 
   return (
     <Fragment>
-    <div className="sidebar">
-      <div className="sidebar__logo">
-        <img
-          src="logo.svg"
-          alt="AuthentiAI Logo"
-          height="30"
-          style={{ margin: "5px 10px 5px 0px" }}
-        />
-        <Link to="/">AuthentiAI</Link>
-      </div>
-      <div ref={sidebarRef} className="sidebar__menu">
-        {sidebarNavItems.map((item, index) => (
-          <Link to={item.to} key={index}>
-            <div
-              className={`sidebar__menu__item ${
-                activeIndex === index ? "active" : ""
-              }`}
-            >
-              <div className="sidebar__menu__item__icon">{item.icon}</div>
-              <div className="sidebar__menu__item__text">{item.display}</div>
-            </div>
-          </Link>
-        ))}
-        <div className="sidebar-bottom">
-          {sidebarNavBottomItems.map((item, index) => (
-            <Link
-              to={item.to}
-              key={index}
-              onClick={() => handleBottomSidebar(index)}
-            >
-              <div className={`sidebar__menu__item sidebar__menu__item-bottom`}>
+      <Modal
+        title="Confirmation"
+        centered
+        open={modalOpen}
+        cancelText="No"
+        okText="Yes"
+        onOk={() => {
+          setModalOpen(false);
+          confirmLogout();
+        }}
+        onCancel={() => setModalOpen(false)}
+      >
+        <p>Do you want to logout?</p>
+      </Modal>
+      <div className="sidebar">
+        <div className="sidebar__logo">
+          <img
+            src="logo.svg"
+            alt="AuthentiAI Logo"
+            height="30"
+            style={{ margin: "5px 10px 5px 0px" }}
+          />
+          <Link to="/">AuthentiAI</Link>
+        </div>
+        <div ref={sidebarRef} className="sidebar__menu">
+          {sidebarNavItems.map((item, index) => (
+            <Link to={item.to} key={index}>
+              <div
+                className={`sidebar__menu__item ${
+                  activeIndex === index ? "active" : ""
+                }`}
+              >
                 <div className="sidebar__menu__item__icon">{item.icon}</div>
                 <div className="sidebar__menu__item__text">{item.display}</div>
               </div>
             </Link>
           ))}
+          <div className="sidebar-bottom">
+            {sidebarNavBottomItems.map((item, index) => (
+              <Link
+                to={item.to}
+                key={index}
+                onClick={() => handleBottomSidebar(index)}
+              >
+                <div
+                  className={`sidebar__menu__item sidebar__menu__item-bottom`}
+                >
+                  <div className="sidebar__menu__item__icon">{item.icon}</div>
+                  <div className="sidebar__menu__item__text">
+                    {item.display}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
     </Fragment>
   );
 };

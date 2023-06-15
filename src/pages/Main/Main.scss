@@ -6,13 +6,13 @@
     font-size: 55px;
     letter-spacing: 0.02em;
     color: #1F1F1F;
-    padding: 0px 10px;
+    padding: 15px 10px 10px 10px;
 }
 
 .title {
     border-radius: 50px;
     padding: 10px 20px;
-    margin: 5px 5px 50px 5px;
+    margin: 0px 5px 50px 5px;
     width: fit-content;
     font-family: 'Inter';
     font-size: 20px;
@@ -27,7 +27,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: -7.5%;
 }
 
 .main {
@@ -36,7 +35,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 // Button Row
@@ -115,8 +114,6 @@
     align-items: center;
     text-align: center;
 }
-
-
 
 .card-container {
     display: flex;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./auth.styles.css";
+import "./authentication.scss";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -22,10 +22,7 @@ const Authentication = () => {
   const nav = useNavigate();
   useEffect(()=>{
      if(user){
-      //  refreshSignInLimitHandler(user);
-    
-          nav("/playground")
-   
+        nav("/")
      }
   },[user])
 
