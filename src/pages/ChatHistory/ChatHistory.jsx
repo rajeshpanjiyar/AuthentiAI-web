@@ -112,7 +112,7 @@ const ChatHistory = () => {
           style={{ minHeight: chatsOn ? "85vh" : "89vh" }}
         >
           <button className="chat-history-button" onClick={fetchAllChats}>
-            Get All Chats
+            Get Your All Chats
           </button>
         </div>
       )}

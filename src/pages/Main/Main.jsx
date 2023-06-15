@@ -276,7 +276,7 @@ const Main = () => {
 
         <div className="disclaimer">
           We are still under a development phase and the information represented
-          are not our personal views.
+          are not our personal views and can be biased.
         </div>
       </div>
       {!chatting && (
