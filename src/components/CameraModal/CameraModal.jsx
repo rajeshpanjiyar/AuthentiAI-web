@@ -280,6 +280,7 @@ const CameraModal = () => {
   };
   const handleOk = async () => {
     setResultModal(true);
+    setProductResult(null);
     await startSystem();
     setSession(false);
     sysHealthGood = false;
