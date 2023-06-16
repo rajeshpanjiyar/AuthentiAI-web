@@ -41,7 +41,7 @@ const ChatHistory = () => {
           "div",
           { className: "chat-item-right" },
           React.createElement("img", {
-            src: "profile.png",
+            src: `${user && user.photoURL}`,
             className: "user-chat-icon",
             alt: "User Profile",
           }),
