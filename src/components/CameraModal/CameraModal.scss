@@ -1,0 +1,88 @@
+.product-verify-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.product-verify-select,
+.product-verify-webcam {
+    text-align: center;
+    border-radius: 8px;
+    background-color: #6F47EB;
+    cursor: pointer;
+    color: white;
+    font-weight: 800;
+}
+
+.product-verify-select:hover, .webcam-btn:hover,
+.product-verify-webcam:hover {
+    cursor: pointer;
+    transition: 0.1s;
+    background-color: #5f35de;
+}
+
+.product-verify-select {
+    width: 30vw;
+}
+
+.product-verify-webcam {
+    width: 30vw;
+    padding: 20px 30px;
+}
+
+.verify-image {
+    display: inline-block;
+    width: 150px;
+    margin-right: 10vw !important;
+    margin: 10px;
+    object-fit: cover;
+}
+
+.product-verify-left {
+    width: 100vw !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 18px;
+}
+
+.product-verify-submit, .webcam-btn {
+    background-color: #6F47EB;
+    color: white;
+    font-weight: 800;
+    border: 2px solid #6F47EB !important;
+}
+
+.webcam-btn{
+    padding: 20px 0px;
+    width: 160px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.product-verify-submit:hover {
+    transition: 0.4s;
+    color: #6F47EB !important;
+    background-color: white;
+    font-weight: 800;
+}
+
+.webcam-label {
+    cursor: pointer;
+    padding: 20px 30px;
+}
+
+.product-result-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 20px;
+    margin: 50px;
+}
+
+.image-name{
+    width: 28vw;
+    font-size: 16px;
+    padding-left: 15px;
+}
