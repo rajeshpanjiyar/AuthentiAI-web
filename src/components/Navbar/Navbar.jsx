@@ -28,16 +28,18 @@ const Navbar = () => {
         <div className="navbar__left"></div>
         <div className="navbar__right">
           {user ? (
-            <div onClick={showUserDetails}>{user?.displayName}</div>
+            <div onClick={showUserDetails}><b>{user?.displayName}</b></div>
           ) : (
             <Link to="/">Login</Link>
           )}
-          <img
-            src="profile.png"
-            class="user"
-            alt="User Profile"
-            onClick={showUserDetails}
-          />
+          {user && (
+            <img
+              src={user && user.photoURL}
+              class="user"
+              alt="User Profile"
+              onClick={showUserDetails}
+            />
+          )}
         </div>
       </div>
     </Fragment>
