@@ -81,7 +81,6 @@ const Sidebar = () => {
     auth
       .signOut()
       .then(() => {
-        console.log("User Signed Out");
         localStorage.removeItem("user");
         nav("/");
       })

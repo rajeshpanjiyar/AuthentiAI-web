@@ -67,7 +67,6 @@ const ChatHistory = () => {
       `${process.env.REACT_APP_SERVER_BASE_URL}/api/get-all-chats/${id}`
     )
       .then((response) => {
-        console.log(response);
         chatData = response.data[0].chats;
         chatReactElementArray = [];
         for (let i = 0; i < chatData.length; i++) {
@@ -92,7 +91,6 @@ const ChatHistory = () => {
       `${process.env.REACT_APP_SERVER_BASE_URL}/api/delete-all-chats/${id}`
     )
       .then((response) => {
-        console.log(response);
         chatData = [];
         chatReactElementArray = [];
         const X = React.createElement("div", {}, chatReactElementArray);

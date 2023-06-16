@@ -45,7 +45,6 @@ const CameraModal = () => {
     )
       .then((response) => {
         sysHealthGood = response.data.msg === "OK" ? true : false;
-        // console.log("1-health", response);
       })
       .catch((error) => {
         console.error(error);
@@ -66,7 +65,6 @@ const CameraModal = () => {
       }
     )
       .then((response) => {
-        // console.log("2-login", response);
         access_token = response.data.access_token;
       })
       .catch((error) => {
@@ -90,7 +88,6 @@ const CameraModal = () => {
       }
     )
       .then((response) => {
-        // console.log("3-experience", response);
         product_config_id = response.data.product_config_id;
       })
       .catch((error) => {
@@ -118,7 +115,6 @@ const CameraModal = () => {
       }
     )
       .then((response) => {
-        // console.log("4-session", response);
         session_id = response.data.session_id;
       })
       .catch((error) => {
@@ -145,7 +141,6 @@ const CameraModal = () => {
       }
     )
       .then((response) => {
-        // console.log("5-upload", response);
         task_id = response.data.task_id;
       })
       .catch((error) => {
@@ -176,7 +171,6 @@ const CameraModal = () => {
       }
     )
       .then((response) => {
-        // console.log("6-update", response);
       })
       .catch((error) => {
         console.error(error);
@@ -198,7 +192,6 @@ const CameraModal = () => {
       }
     )
       .then((response) => {
-        // console.log("7-result", response);
         final_result = response.data.result;
         status = response.data.status;
       })
@@ -210,7 +203,6 @@ const CameraModal = () => {
 
   const startSystem = async () => {
     try {
-      //   console.log("!!!!!!!!!!--------System started---------!!!!!!!!!!");
       await checkHealth().then(async function () {
         if (sysHealthGood) {
           await login()
@@ -230,7 +222,6 @@ const CameraModal = () => {
               while (status !== "COMPLETED") {
                 await verifySessionResult();
                 setTimeout(function () {
-                  //   console.log("One second has passed");
                 }, 1000);
               }
             })
@@ -269,16 +260,12 @@ const CameraModal = () => {
     const blob = new Blob(byteArrays, { type: "image/jpeg" });
     const file = new File([blob], "screenshot.jpg", { type: "image/jpeg" });
     form_data = file;
-
-    // Now you have the file in the desired format
-    // console.log("File:", file);
   });
 
   const getPhoto = (e) => {
     let formData = new FormData();
     setSelectedImage(e.target.files[0]);
     message.success("Image selected!")
-    console.log(e);
     formData.append("input_image", e.target.files[0]);
     form_data = e.target.files[0];
     setImage("");
@@ -461,7 +448,7 @@ const CameraModal = () => {
             ) : (
               <div className="product-result-page">
                 <img src={(imageUrl && selectedImage)?imageUrl:image} width="200" alt="Product Image" style={{borderRadius:"5px"}} />
-                <p style={{marginTop: "30px"}}>Indentification: <b>{productResult}</b></p>
+                <p style={{marginTop: "30px"}}>Identification: <b>{productResult}</b></p>
               </div>
             )}
           </div>

@@ -54,7 +54,6 @@ const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
         // window.location.href
         signInWithEmailLink(auth, emailCheck, window.location.href)
           .then((res) => {
-            console.log("From sign in with email", emailCheck, " => ", res);
             localStorage.removeItem("emailSolocl");
             setAlertHelper("success", "Sign In Successful");
           })
@@ -72,7 +71,6 @@ const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
 
   const onSumbitHandler = (event) => {
     event.preventDefault();
-    console.log("Sign In Form Submit : ", email);
     sendSignInLinkToEmail(auth, email, {
       // link to which user will be redirected
       url: "http://localhost:3000/",
@@ -92,7 +90,6 @@ const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleAuthProvider)
       .then((data) => {
-        console.log("Google Sign In Data", data);
         setAlertHelper("success", "Sign In Successful");
       })
       .catch((err) => {
