@@ -1,7 +1,8 @@
-import "./Support.scss";
 import React, { useRef , useState } from 'react';
 import emailjs from '@emailjs/browser'; 
 import { Fragment } from "react";
+import "./Support.scss";
+
   
   const TextInput = props => (
     <div
@@ -41,52 +42,44 @@ import { Fragment } from "react";
         />
     </div>
   );
-  
-//   const Button = props => (
-//     <button
-//       className="button">{props.children}</button>
-//   );
-  
-  /** Root Component */
-  
-
+const initialState = {
+  name: {
+    name: 'name',
+    label: 'Name',
+    value: '',
+    focus: false,
+  },
+  email: {
+    name: 'email',
+    label: 'Email',
+    value: '',
+    focus: false,
+  },
+  message: {
+    name: 'message',
+    label: 'Message',
+    value: '',
+    focus: false,
+  },
+}
 const Support = () => {
     const form = useRef();
+    const [state, setState] = useState(initialState);
 
     const sendEmail = (e) => {
       e.preventDefault();
   
       emailjs.sendForm(
-      'process.env.REACT_APP_EMAILJS_SERVICE_ID'
+      `${process.env.REACT_APP_EMAILJS_SERVICE_ID}`
       , 
-       'process.env.REACT_APP_EMAILJS_TEMPLATE_ID'
-      , form.current, 'process.env.REACT_APP_EMAILJS_PUBLIC_KEY')
+       `${process.env.REACT_APP_EMAILJS_TEMPLATE_ID}`
+      , form.current, `${process.env.REACT_APP_EMAILJS_PUBLIC_KEY}`)
         .then((result) => {
-            console.log(result.text);
+          setState(initialState)
         }, (error) => {
             console.log(error.text);
         });
     }; 
-  const [state, setState] = useState({
-    name: {
-      name: 'name',
-      label: 'Name',
-      value: '',
-      focus: false,
-    },
-    email: {
-      name: 'email',
-      label: 'Email',
-      value: '',
-      focus: false,
-    },
-    message: {
-      name: 'message',
-      label: 'Message',
-      value: '',
-      focus: false,
-    },
-  });
 
   const handleFocus = (e) => {
     const name = e.target.name;
@@ -133,18 +126,21 @@ const Support = () => {
         >
           <TextInput
             {...name}
+            required
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
           />
           <TextInput
             {...email}
+            required
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
           />
           <TextArea
             {...message}
+            required
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}

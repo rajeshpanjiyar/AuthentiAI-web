@@ -85,6 +85,11 @@ body {
   cursor: pointer;
 }
 
+.support-button:hover{
+  transition: 0.3s;
+  background-color: #5328d3;
+}
+
 @mixin input {
   display: block;
   width: 100%;
