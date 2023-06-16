@@ -278,6 +278,8 @@ const CameraModal = () => {
   const handleCancel = () => {
     setOpen(false);
     setSession(false);
+    setResultModal(false);
+    setProductResult(null);
     sysHealthGood = false;
       access_token = "";
       product_config_id = "";
