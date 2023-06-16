@@ -32,12 +32,14 @@ const Navbar = () => {
           ) : (
             <Link to="/">Login</Link>
           )}
-          <img
-            src="profile.png"
-            class="user"
-            alt="User Profile"
-            onClick={showUserDetails}
-          />
+          {user && (
+            <img
+              src={user && user.photoURL}
+              class="user"
+              alt="User Profile"
+              onClick={showUserDetails}
+            />
+          )}
         </div>
       </div>
     </Fragment>

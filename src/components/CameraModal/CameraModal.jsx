@@ -4,6 +4,7 @@ import { useSharedVariables } from "../ShareableStates/ShareableState";
 import Webcam from "react-webcam";
 import Axios from "axios";
 import { Spin } from "antd";
+import "./CameraModal.scss";
 
 const video_constraint = {
   width: 220,
@@ -29,6 +30,14 @@ const CameraModal = () => {
   const webcamRef = React.useRef(null);
   const [productResult, setProductResult] = useState(null);
   const [resultModal, setResultModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+
+  useEffect(() => {
+    if (selectedImage) {
+      setImageUrl(URL.createObjectURL(selectedImage));
+    }
+  }, [selectedImage]);
 
   const checkHealth = async () => {
     await Axios.get(
@@ -198,6 +207,7 @@ const CameraModal = () => {
       });
   };
 
+
   const startSystem = async () => {
     try {
       //   console.log("!!!!!!!!!!--------System started---------!!!!!!!!!!");
@@ -266,8 +276,12 @@ const CameraModal = () => {
 
   const getPhoto = (e) => {
     let formData = new FormData();
+    setSelectedImage(e.target.files[0]);
+    message.success("Image selected!")
+    console.log(e);
     formData.append("input_image", e.target.files[0]);
     form_data = e.target.files[0];
+    setImage("");
   };
 
   const stopWebcam = () => {
@@ -277,21 +291,35 @@ const CameraModal = () => {
   const handleCancel = () => {
     setOpen(false);
     setSession(false);
+    sysHealthGood = false;
+      access_token = "";
+      product_config_id = "";
+      session_id = "";
+      task_id = "";
+      final_result = "";
+      form_data = null;
+      setImageUrl(null);
+      setSelectedImage(null);
+      status = null;
+      setImage("");
   };
   const handleOk = async () => {
-    setResultModal(true);
-    setProductResult(null);
-    await startSystem();
-    setSession(false);
-    sysHealthGood = false;
-    access_token = "";
-    product_config_id = "";
-    session_id = "";
-    task_id = "";
-    final_result = "";
-    form_data = null;
-    status = null;
-    setImage("");
+    if (form_data) {
+      setResultModal(true);
+      setProductResult(null);
+      await startSystem();
+      setSession(false);
+      sysHealthGood = false;
+      access_token = "";
+      product_config_id = "";
+      session_id = "";
+      task_id = "";
+      final_result = "";
+      form_data = null;
+      status = null;
+    } else {
+      message.warning("Please choose or click a product photo!");
+    }
   };
 
   const startCamera = () => {
@@ -308,7 +336,7 @@ const CameraModal = () => {
         onCancel={handleCancel}
         closable={resultModal && !productResult ? false : true}
         maskClosable={false}
-        width={600}
+        width={resultModal?600:1000}
         footer={
           resultModal && !productResult
             ? null
@@ -320,13 +348,17 @@ const CameraModal = () => {
                 ),
                 <Button
                   key="submit"
-                  type="primary"
+                  className="product-verify-submit"
                   onClick={
                     !resultModal
                       ? handleOk
                       : () => {
                           setOpen(false);
                           setResultModal(false);
+                          setImage("");
+                          setSession(false);
+                          setImageUrl(null);
+                          setSelectedImage(null);
                         }
                   }
                 >
@@ -338,21 +370,47 @@ const CameraModal = () => {
         {!resultModal ? (
           <div>
             {!session ? (
-              <div>
-                <button
-                  onClick={() => {
-                    setSession(true);
-                  }}
-                >
-                  Upload using Webcam
-                </button>
+              <div className="product-verify-buttons">
+                <div className="product-verify-left">
+                  <div
+                    className="product-verify-webcam"
+                    onClick={() => {
+                      setSession(true);
+                      setImageUrl(null);
+                      setSelectedImage(null);
+                    }}
+                  >
+                    Upload using Webcam
+                  </div>
+                  <div>
+                    <div>
+                      <div className="product-verify-select">
+                      <label for="files">
+                        <div className="webcam-label">Select Image</div>
+                      </label>
+                    </div>
+                    {selectedImage && <p className="image-name">Image: {selectedImage.name}</p>}
+                      <input
+                        id="files"
+                        className="product-verify-select"
+                        type="file"
+                        style={{ visibility: "hidden" }}
+                        onChange={getPhoto}
+                      />
+                    </div>
+                  </div>
+                </div>
                 <div>
-                  <input type="file" onChange={getPhoto} />
+                <img
+              src="verify.jpg"
+              class="verify-image"
+              alt="User Profile"
+            />
                 </div>
               </div>
             ) : (
               <div className="webcam-container">
-                <div className="webcam-img">
+                <div className="webcam-img product-result-page">
                   {image === "" ? (
                     <Webcam
                       audio={false}
@@ -363,10 +421,10 @@ const CameraModal = () => {
                       videoConstraints={videoConstraint}
                     />
                   ) : (
-                    <img src={image} />
+                    <img src={image} width="220" style={{borderRadius:"5px"}}/>
                   )}
                 </div>
-                <div>
+                <div className="product-result-page">
                   {image != "" ? (
                     <button
                       onClick={async (e) => {
@@ -382,6 +440,7 @@ const CameraModal = () => {
                       onClick={async (e) => {
                         e.preventDefault();
                         capture();
+                        message.success("Image captured!")
                       }}
                       className="webcam-btn"
                     >
@@ -395,14 +454,14 @@ const CameraModal = () => {
         ) : (
           <div>
             {!productResult ? (
-              <div>
-                <Spin size="large" />
-                <h1>Processing...</h1>
+              <div style={{textAlign: "center"}}>
+                <Spin size="large" style={{marginTop: "50px"}}/>
+                <h3 style = {{margin: "20px 0px"}}>Processing..</h3>
               </div>
             ) : (
-              <div>
-                <h1>Result</h1>
-                <p>{productResult}</p>
+              <div className="product-result-page">
+                <img src={(imageUrl && selectedImage)?imageUrl:image} width="200" alt="Product Image" style={{borderRadius:"5px"}} />
+                <p style={{marginTop: "30px"}}>Indentification: <b>{productResult}</b></p>
               </div>
             )}
           </div>
