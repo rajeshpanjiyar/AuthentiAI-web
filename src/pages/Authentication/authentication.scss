@@ -1,32 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&family=Montserrat:wght@200;400;500;700;800&family=Questrial&family=Raleway:wght@300;400;600;700;800;900&family=Roboto+Serif:opsz,wght@8..144,100;8..144,300;8..144,400;8..144,500&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&family=Montserrat:wght@200;400;500;700;800&family=Playfair+Display:wght@500;600;700&family=Raleway:wght@300;400;600;700;800;900&family=Syne:wght@700;800&family=Tenor+Sans&display=swap');
 
-*{
-  font-family: 'Inter', sans-serif;
+
+body{
+  background-color: #6F47EB;
 }
 
-.signInCover{
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 72px;
-  bottom: 0;
-  }
+.signInOuterCover {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.title-container {
+  flex: 1;
+  padding: 20px;
+}
+
+.signInContainer {
+  flex: 1;
+  padding: 20px;
+}
+
 
   .signInContainer{
   position: fixed;
   left: 50%;
   top: 50%;
-  height: 55vh;
-  width: 29vw;
+
   transform: translate(-50% , -50%);
-  border: 1px solid rgb(131, 131, 131);
-  box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 30%);
-  /* border: 2px solid whitesmoke; */
-  border-radius: 15px;
-  padding: 5px;
+  white-space: nowrap;
+  padding: 15px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -40,6 +48,12 @@
 }
 
 
+.signinGooglebtn
+{
+  font-size: 1rem;
+
+}
+
 #SignInFormInput{
   text-align: center;
   /* background-color: gray; */
@@ -48,20 +62,20 @@
   
   border-radius: 8px;
   padding: 2px;
-  /* background: rgba(0, 0, 0, 0.3); */
-  /* border: 2px solid rgb(136 44 240); */
   background: rgb(240,240,240);
   border: 1px solid black;
   height: 54px;
   margin-top: 20px;
   margin-bottom: 20px;
-  /* outline: none */
+  border-radius: 5px;
+outline: none;
 }
 
 #SignInFormInput::placeholder{
   color: rgb(68, 68, 68);
-   /* border: 2px solid rgb(136 44 240);  */
+  border: none !important;
   opacity: 1;
+  font-size: 1rem;
 }
   
 #SignInformId button{
@@ -108,4 +122,74 @@ justify-content: center;
   flex-direction: row;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
+  border: 1px solid black;
+}
+
+#googleButton:hover{
+  background-color: #4285F4;
+  color: white;
+  border:none;
+}
+
+.signInform-container
+{
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid rgb(131, 131, 131);
+  box-shadow: 0px 0px 5px 0px rgba(78, 1, 177, 0.3);
+  /* border: 2px solid whitesmoke; */
+  border-radius: 15px;
+  padding: 40px 10px;
+  height : 60vh;
+  
+}
+
+.text-signin-box{
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgb(23, 23, 23);
+  margin-bottom: 20px;
+  margin-top: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.signin-title-1{
+
+  font-size: 5.25rem;
+  font-family: Syne;
+  font-weight: 700;
+  margin-right: 20%;
+  color: #FFFFFF;
+
+}
+
+.signin-title-2{
+
+  font-size: 4rem;
+  font-family: Syne;
+  font-weight: 700;
+  margin-right: 20%;
+  color: rgb(255, 255, 255);
+}
+
+.title-container{
+  margin-right: 20%;
+}
+
+.signin-btn{
+
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  border: 1px solid rgb(131, 131, 131);
+}
+
+.signin-btn:hover{
+  background-color: #6F47EB;
+  color: white;
+  border: none;
 }

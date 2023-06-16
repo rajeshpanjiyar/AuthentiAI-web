@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 
 
+
 const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
   const nav = useNavigate();
   const [user, loading, error] = useAuthState(auth);
@@ -101,11 +102,26 @@ const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
 
   return (
     <div className="signInOuterCover">
-      {/* <div className="signInCover"></div> */}
+    
+       
       <div className="signInContainer">
+      <div className="title-container">
+     
+     <h1 className="signin-title-1">Authenti AI</h1>
+      <br />
+      <h1 className="signin-title-2">
+       Power your Product
+       <br />
+        Authentication
+       <br />
+       with our AI Service</h1>
+ 
+     </div>
+       <div className="signInform-container">
         <div className="signInHeading">
           <h2>Welcome</h2>
-          <p>Log in to access Authenti AI service</p>
+          <p className="text-signin-box">
+            Log in to access Authenti AI service</p>
           {/* <hr className="hrDown" /> */}
         </div>
         <form onSubmit={onSumbitHandler} id="SignInformId">
@@ -122,8 +138,8 @@ const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
             id="googleButton"
             className={
               user
-                ? "hollow button primary btn btn-dark disabled"
-                : "hollow button primary btn btn-dark"
+                ? "hollow button primary btn btn-dark disabled signinGooglebtn"
+                : "hollow button primary btn btn-dark signinGooglebtn"
             }
             onClick={handleGoogleSignIn}
           >
@@ -161,13 +177,15 @@ const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
        
            
             }}
-            className={user ? "btn btn-primary disabled" : "btn btn-primary"}
+            className={user ? "btn btn-primary disabled signin-btn" : "btn btn-primary signin-btn"}
           >
             Sign In
           </button>
         </form>
+        </div>
       </div>
-    </div>
+      </div>
+ 
   );
 };
 
