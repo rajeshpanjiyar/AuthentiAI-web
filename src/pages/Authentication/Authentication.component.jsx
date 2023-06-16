@@ -6,8 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utility/Firebase/firebase";
 import Alert from "../Alert/Alert";
 import { useNavigate } from "react-router-dom";
-// import {refreshSignInLimitHandler} from '../../utility/Firebase/firebaseHelperFunctions'
-
+import { Spin } from "antd";
 
 const Authentication = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -18,30 +17,37 @@ const Authentication = () => {
   });
 
   const nav = useNavigate();
-  useEffect(()=>{
-     if(user){
-        nav("/")
-     }
-  },[user])
+  useEffect(() => {
+    if (user) {
+      nav("/");
+    }
+  }, [user]);
 
   return (
     <>
-      {alertFunctionality.display && (
-        <Alert
-          type={alertFunctionality.type}
-          message={alertFunctionality.message}
-        />
-      )}
-       
+      {!user ? (
+        <>
+          {alertFunctionality.display && (
+            <Alert
+              type={alertFunctionality.type}
+              message={alertFunctionality.message}
+            />
+          )}
 
-      <div className="authContainer">
-        <SignIn
-          alertFunctionality={alertFunctionality}
-          setAlertFunctionality={setAlertFunctionality}
-        />
-      </div>
+          <div className="authContainer">
+            <SignIn
+              alertFunctionality={alertFunctionality}
+              setAlertFunctionality={setAlertFunctionality}
+            />
+          </div>
+        </>
+      ) : (
+        <div>
+          <Spin />
+        </div>
+      )}
     </>
   );
 };
 
-export default Authentication
+export default Authentication;
