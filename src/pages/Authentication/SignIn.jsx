@@ -11,8 +11,6 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 
-
-
 const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
   const nav = useNavigate();
   const [user, loading, error] = useAuthState(auth);
@@ -99,90 +97,94 @@ const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
 
   return (
     <div className="signInOuterCover">
-    
-       
       <div className="signInContainer">
-      <div className="title-container">
-     
-     <h1 className="signin-title-1">Authenti AI</h1>
-      <br />
-      <h1 className="signin-title-2">
-       Power your Product
-       <br />
-        Authentication
-       <br />
-       with our AI Service</h1>
- 
-     </div>
-       <div className="signInform-container">
-        <div className="signInHeading">
-          <h2>Welcome</h2>
-          <p className="text-signin-box">
-            Log in to access Authenti AI service</p>
-          {/* <hr className="hrDown" /> */}
+        <div className="title-container">
+          <img src="login_banner.jpg" alt="Star " width="900" />
         </div>
-        <form onSubmit={onSumbitHandler} id="SignInformId">
-          <button
-            type="button"
-            style={{
-              cursor: "pointer",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-       
-           
-            }}
-            id="googleButton"
-            className={
-              user
-                ? "hollow button primary btn btn-dark disabled signinGooglebtn"
-                : "hollow button primary btn btn-dark signinGooglebtn"
-            }
-            onClick={handleGoogleSignIn}
-          >
-            <img
-              width="15px"
-              alt="Google login"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-            />
-            <span style={{ marginLeft: "5px" }}>Sign in with Google</span>
-          </button>
-          <div className="lineBreakAuth">
-            <hr className="hrDown" />
-
-            <h3 style={{color:"grey"}}>OR</h3>
-            <hr className="hrDown" />
+        <div className="signInform-container">
+          <div className="signInHeading">
+            <h2>Welcome</h2>
+            <p className="text-signin-box">
+              Sign in to access{" "}
+              <span style={{ color: "#572ade" }}>
+                <b>Authenti AI</b>
+              </span>{" "}
+              service
+            </p>
           </div>
-          <input
-            id="SignInFormInput"
-            type="email"
-            required
-            placeholder="Enter Your Email Id"
-            aria-label="Email Id"
-            aria-describedby="addon-wrapping"
-            value={email}
-            onChange={onEmailChangeHandler}
-          />
-          <button
-            type="submit"
-            style={{
-              cursor: "pointer",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-       
-           
-            }}
-            className={user ? "btn btn-primary disabled signin-btn" : "btn btn-primary signin-btn"}
-          >
-            Sign In
-          </button>
-        </form>
+          <form onSubmit={onSumbitHandler} id="SignInformId">
+            <button
+              type="button"
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                border: "none",
+                background: "#4285F4",
+                color: "white",
+                fontWeight: "600",
+              }}
+              id="googleButton"
+              className={
+                user
+                  ? "hollow button primary btn btn-dark disabled signinGooglebtn"
+                  : "hollow button primary btn btn-dark signinGooglebtn"
+              }
+              onClick={handleGoogleSignIn}
+            >
+              <img
+                width="15px"
+                alt="Google login"
+                style={{ background: "white", padding: "3px", width: "28px" }}
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+              />
+              <span style={{ marginLeft: "5px" }}>Sign in with Google</span>
+            </button>
+            <div className="lineBreakAuth">
+              <hr className="hrDown" />
+
+              <h6 style={{ color: "grey" }}>OR</h6>
+              <hr className="hrDown" />
+            </div>
+            <input
+              id="SignInFormInput"
+              type="email"
+              required
+              className="email-input-sigin"
+              placeholder="Enter your email address"
+              aria-label="Email Id"
+              aria-describedby="addon-wrapping"
+              value={email}
+              onChange={onEmailChangeHandler}
+            />
+            <button
+              type="submit"
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              className={
+                user
+                  ? "btn btn-primary disabled signin-btn"
+                  : "btn btn-primary signin-btn"
+              }
+            >
+              Sign In
+            </button>
+          </form>
+          <p style = {{marginTop: "20px", fontSize: "10px"}}>
+            <span style={{ color: "#572ade" }}>
+              <b>Authenti AI</b>
+            </span>{" "}
+            , Power your product authentication with our AI Service
+          </p>
         </div>
       </div>
-      </div>
- 
+    </div>
   );
 };
 

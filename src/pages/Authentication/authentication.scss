@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&family=Montserrat:wght@200;400;500;700;800&family=Playfair+Display:wght@500;600;700&family=Raleway:wght@300;400;600;700;800;900&family=Syne:wght@700;800&family=Tenor+Sans&display=swap');
 
 
-body{
-  background-color: #6F47EB;
+body {
+  // background-color: #6F47EB;
 }
 
 .signInOuterCover {
@@ -15,7 +15,6 @@ body{
 
 .title-container {
   flex: 1;
-  padding: 20px;
 }
 
 .signInContainer {
@@ -23,13 +22,11 @@ body{
   padding: 20px;
 }
 
-
-  .signInContainer{
+.signInContainer {
   position: fixed;
-  left: 50%;
+  left: 47%;
   top: 50%;
-
-  transform: translate(-50% , -50%);
+  transform: translate(-50%, -50%);
   white-space: nowrap;
   padding: 15px;
   display: flex;
@@ -38,7 +35,7 @@ body{
   align-items: center;
 }
 
-#SignInformId{
+#SignInformId {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -48,44 +45,45 @@ body{
 }
 
 
-.signinGooglebtn
-{
+.signinGooglebtn {
   font-size: 1rem;
-
 }
 
-#SignInFormInput{
+.signinGooglebtn:hover{
+  transition: 0.3s;
+  background-color: #256fe5 !important;
+}
+
+#SignInFormInput {
   text-align: center;
-  /* background-color: gray; */
   opacity: 1;
   width: 23vw;
-  
   border-radius: 8px;
   padding: 2px;
-  background: rgb(240,240,240);
+  background: rgb(240, 240, 240);
   border: 1px solid black;
   height: 54px;
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 5px;
-outline: none;
+  outline: none;
 }
 
-#SignInFormInput::placeholder{
+#SignInFormInput::placeholder {
   color: rgb(68, 68, 68);
   border: none !important;
   opacity: 1;
   font-size: 1rem;
 }
-  
-#SignInformId button{
+
+#SignInformId button {
   width: 23vw;
   opacity: 0.91;
   padding: 10px;
   height: 5vh;
 }
 
-.signInHeading{
+.signInHeading {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -93,71 +91,64 @@ outline: none;
   color: rgb(76, 76, 76);
 }
 
-.signInHeading h2{
+.signInHeading h2 {
   color: black;
   font-size: 3.5rem;
   margin-bottom: 3px;
 }
 
-.hrDown{
- 
-  border: 1px solid black;
+.hrDown {
+  border: 0.1px solid black;
   width: 140px;
   margin: 12px;
-
 }
 
-.lineBreakAuth{
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: center;
+.lineBreakAuth {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-#googleButton{
+#googleButton {
   margin-bottom: 20px;
- background-color:  #FFFFFF;
- color: black;
- display: flex;
+  background-color: #FFFFFF;
+  color: black;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
   border: 1px solid black;
 }
 
-#googleButton:hover{
+#googleButton:hover {
   background-color: #4285F4;
   color: white;
-  border:none;
+  border: none;
 }
 
-.signInform-container
-{
+.signInform-container {
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  border: 1px solid rgb(131, 131, 131);
-  box-shadow: 0px 0px 5px 0px rgba(78, 1, 177, 0.3);
-  /* border: 2px solid whitesmoke; */
+  border: 0.1px solid #83838370;
   border-radius: 15px;
   padding: 40px 10px;
-  height : 60vh;
-  
+  height: 60vh;
 }
 
-.text-signin-box{
-  font-size: 1.25rem;
-  font-weight: 600;
+.text-signin-box {
+  font-size: 1.2rem;
   color: rgb(23, 23, 23);
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   margin-top: 10px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.signin-title-1{
+.signin-title-1 {
 
   font-size: 5.25rem;
   font-family: Syne;
@@ -167,8 +158,7 @@ justify-content: center;
 
 }
 
-.signin-title-2{
-
+.signin-title-2 {
   font-size: 4rem;
   font-family: Syne;
   font-weight: 700;
@@ -176,20 +166,27 @@ justify-content: center;
   color: rgb(255, 255, 255);
 }
 
-.title-container{
-  margin-right: 20%;
+.title-container {
+  margin-right: 5%;
 }
 
-.signin-btn{
-
+.signin-btn {
+  background-color: #6F47EB;
+  color: white;
+  font-weight: 800;
   border-radius: 5px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
-  border: 1px solid rgb(131, 131, 131);
+  border: none;
 }
 
-.signin-btn:hover{
-  background-color: #6F47EB;
-  color: white;
-  border: none;
+.signin-btn:hover {
+  transition: 0.3s;
+  background-color: #572ade;
+}
+
+.email-input-sigin{
+  background-color: white !important;
+  border: 0.1px solid #000000 !important;
+
 }
