@@ -129,7 +129,6 @@ const Main = () => {
       await fetch("https://api.openai.com/v1/chat/completions", requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          console.log("data", data);
           reply = data?.choices[0]?.message?.content;
           chatLog.push({ role: "assistant", content: reply });
         })
@@ -163,7 +162,6 @@ const Main = () => {
       postData
     )
       .then((response) => {
-        console.log(response);
       })
       .catch((error) => {
         console.error(error);
@@ -199,7 +197,6 @@ const Main = () => {
       recognition.onresult = (event) => {
         const voiceInput = event.results[0][0].transcript;
         setInputValue(voiceInput);
-        console.log("Voice input triggered with value:", voiceInput);
         setIsListening(false);
       };
 

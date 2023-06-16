@@ -9,7 +9,6 @@ const SignUp = () => {
 
   const SignUpFormSumbitHandler = (event) => {
     event.preventDefault();
-    console.log("SignUpFormSumbitHandler Data: ",signUpData);
     setSignUpData({ userName: "", email: "" });
   };
 

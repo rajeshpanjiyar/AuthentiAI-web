@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 
 const Authentication = () => {
   const [user, loading, error] = useAuthState(auth);
-  console.log("Current User Status", user);
-
   const [alertFunctionality, setAlertFunctionality] = useState({
     display: false,
     type: "success",
