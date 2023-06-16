@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700;900&family=Montserrat:wght@200;400;500;700;800&family=Playfair+Display:wght@500;600;700&family=Raleway:wght@300;400;600;700;800;900&family=Syne:wght@700;800&family=Tenor+Sans&display=swap');
+
+
+.about-title {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: Montserrat;
+    margin-bottom: 1rem;
+    padding: 20px;
+    text-align: center;
+    background-color: #6F47EB;
+    color: white;
+    border-radius: 10px 10px 0px 0px;
+}
+
+
+.team-row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  
+
+  .team-card {
+    width: 200px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #f7f5fe;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .team-card:hover{
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .vision-container{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 20px 0px 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f7f5fe;
+    color: rgb(10, 10, 10);
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    margin-bottom: 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .vision-title{
+
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: Tenor Sans;
+    margin: 0px 20px 0px 20px;
+    padding: 20px;
+    text-align: left;
+    background-color: #6F47EB;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .vision-text{
+
+    font-size: 1.35rem;
+    font-weight: 400;
+    font-family: Tenor Sans;
+    margin: 0px 20px 0px 20px;
+    padding: 20px;
+    text-align: left;
+    background-color: #f7f5fe;
+    color: rgb(10, 10, 10);
+    border-radius: 5px;
+  }
+
+    .vision-text p{
+        margin: 0px;
+    }
+
+.services-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 20px 0px 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f7f5fe;
+    color: rgb(10, 10, 10);
+    margin-bottom: 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.srvices-title{
+
+    
+}

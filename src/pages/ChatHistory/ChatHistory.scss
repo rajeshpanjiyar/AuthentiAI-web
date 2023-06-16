@@ -2,7 +2,7 @@
 // Chat Interface 
 //****************
 .chat-history-button-page {
-    background-color: #595959;
+    background-color: #6F47EB;
     min-height: 85vh;
     box-shadow: 10px 11px 30px rgba(0, 0, 0, 0.25);
     display: flex;
@@ -18,15 +18,16 @@
     cursor: pointer;
     font-weight: 600;
     border-radius: 16px;
-    background: #c6b6f4;
+    background: #f2effc;
 }
 
 .chat-history-button:hover{
     cursor: pointer;
-    background: #e7e1f9;
+    background: #f0ecfc;
     color: #6F47EB !important;
     font-weight: 600;
     transition:ease-in 0.1s;
+    transform: scale(1.05);
 }
 
 .history-chat-container {
