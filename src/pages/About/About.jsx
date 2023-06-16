@@ -4,10 +4,27 @@ import "./About.scss";
 
 const About = () => {
   const teamMembers = [
-    { name: "Rajesh Panjiyar", image: "member1.jpg" , github: "https://github.com/rajeshpanjiyar" },
-    { name: "Samarth Mishra", image: "member2.jpg", github: "https://github.com/Samarth1029" },
-    { name: "Siddhant Hota", image: "member3.jpg" , github: "https://github.com/Siddhanthota" },
-    { name: "Abhishek Ranjan", image: "member4.jpg" , github: "https://github.com/AbhishekRP2002/" },
+    {
+      name: "Rajesh Panjiyar",
+      image:
+        "https://avatars.githubusercontent.com/u/78999467?s=400&u=5ca7d53a4c8fbfc2c90a801d0ceb90552d1e93f9&v=4",
+      github: "https://github.com/rajeshpanjiyar",
+    },
+    {
+      name: "Samarth Mishra",
+      image: "https://avatars.githubusercontent.com/u/87478607?v=4",
+      github: "https://github.com/Samarth1029",
+    },
+    {
+      name: "Siddhant Hota",
+      image: "https://avatars.githubusercontent.com/u/22271775?v=4",
+      github: "https://github.com/Siddhanthota",
+    },
+    {
+      name: "Abhishek Ranjan",
+      image: "https://avatars.githubusercontent.com/u/86261428?v=4",
+      github: "https://github.com/AbhishekRP2002/",
+    },
   ];
   return (
     <Fragment>
@@ -34,10 +51,13 @@ const About = () => {
           <h2 className="services-title">Our Services</h2>
           <div className="services-text">
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero
-              omnis consequatur ipsa aspernatur labore sed sapiente similique
-              quod blanditiis dolores eos natus, repellat aliquam facilis odio
-              at facere et nam?
+              AuthentiBot is to provide users with a
+              seamless and user-friendly experience in verifying the
+              authenticity of their products. The chatbot will be accessible to
+              users with disabilities or impairments and will integrate with
+              existing verification systems. It will also offer additional
+              features such as barcode scanning, voice assistance, and natural
+              language processing to enhance the user experience.
             </p>
           </div>
         </div>

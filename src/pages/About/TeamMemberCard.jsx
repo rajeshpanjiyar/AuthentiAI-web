@@ -4,13 +4,12 @@ import './About.scss'
 const TeamMemberCard = ({ name, image , githubLink }) => {
   return (
     <div className="team-card">
-      <img src={image} alt={name} />
-      <h3>
-        
-        <a href="{githubLink}">
+      <img src={image} alt={name} width="178"/>
+      <h4 style={{textAlign: "center"}}>
+        <a href={githubLink}>
         {name}
         </a>
-        </h3>
+        </h4>
     </div>
   );
 };
