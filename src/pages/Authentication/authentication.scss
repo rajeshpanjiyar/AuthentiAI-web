@@ -18,17 +18,14 @@ body {
 }
 
 .signInContainer {
-  flex: 1;
-  padding: 20px;
-}
-
-.signInContainer {
   position: fixed;
   left: 47%;
   top: 50%;
   transform: translate(-50%, -50%);
   white-space: nowrap;
   padding: 15px;
+  flex: 1;
+  padding: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -57,7 +54,7 @@ body {
 #SignInFormInput {
   text-align: center;
   opacity: 1;
-  width: 23vw;
+  width: 20rem;
   border-radius: 8px;
   padding: 2px;
   background: rgb(240, 240, 240);
@@ -77,11 +74,13 @@ body {
 }
 
 #SignInformId button {
-  width: 23vw;
+  width: 20rem;
   opacity: 0.91;
   padding: 10px;
   height: 5vh;
 }
+
+
 
 .signInHeading {
   display: flex;
@@ -140,6 +139,16 @@ body {
   height: 60vh;
 }
 
+.signinpage-image{
+ width: 60vw !important;
+}
+
+@media (max-width: 920px) {
+  .signinpage-image {
+    display: none;
+  }
+}
+
 .text-signin-box {
   font-size: 1.2rem;
   color: rgb(23, 23, 23);
@@ -188,5 +197,4 @@ body {
 .email-input-sigin{
   background-color: white !important;
   border: 0.1px solid #000000 !important;
-
 }

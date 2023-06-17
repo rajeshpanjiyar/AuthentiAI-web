@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, Fragment } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Modal } from "antd";
+import { Modal, message } from "antd";
 import { auth } from "../../pages/utility/Firebase/firebase";
 import "./Sidebar.scss";
 
@@ -39,8 +39,8 @@ const sidebarNavBottomItems = [
     section: "clear",
   },
   {
-    display: "Switch Light Mode",
-    icon: <i className="bx bx-sun"></i>,
+    display: "Switch Dark Mode",
+    icon: <i className="bx bx-moon"></i>,
     section: "lightmode",
   },
   {
@@ -73,7 +73,7 @@ const Sidebar = () => {
 
   const getAllConversations = () => {};
   const switchLightMode = () => {
-    alert("Switched to light mode.");
+    message.info("Dark mode feature is coming soon!");
   };
 
   const nav = useNavigate();

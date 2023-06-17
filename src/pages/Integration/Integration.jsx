@@ -1,5 +1,5 @@
 const Integration = () => {
-    return <div>This is Integration page</div>;
+    return <div>Integration page comming soon!</div>;
 };
 
 export default Integration;
