@@ -338,6 +338,7 @@ const CameraModal = () => {
                 <Button
                   key="submit"
                   className="product-verify-submit"
+                  id="product-verify-submit"
                   onClick={
                     !resultModal
                       ? handleOk
