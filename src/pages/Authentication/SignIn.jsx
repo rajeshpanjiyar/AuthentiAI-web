@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCallback } from "react";
+import { message } from 'antd';
 
 const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
   const nav = useNavigate();
@@ -71,13 +72,14 @@ const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
     event.preventDefault();
     sendSignInLinkToEmail(auth, email, {
       // link to which user will be redirected
-      url: "http://localhost:3000/",
+      url: "https://authenti-ai.netlify.app/",
       handleCodeInApp: true,
     })
       .then(() => {
         window.localStorage.setItem("emailSolocl", email);
         setAlertHelper("primary", "Sign In Link Sent To Email");
         setEmail("");
+        message.info("Please check your mail for the link to login.");
       })
       .catch((err) => {
         setAlertHelper("alert", "Sign In Link Error ..!!");
