@@ -3,14 +3,16 @@ import * as ReactDOM from "react-dom";
 import moment from "moment";
 import "./ChatHistory.scss";
 import Axios from "axios";
-import { message } from "antd";
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { Button, Modal, Spin, message } from "antd";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utility/Firebase/firebase";
 
 var chatData = [];
 var chatReactElementArray = [];
 const ChatHistory = () => {
   const [chatsOn, setChatsOn] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const myRef = useRef(null);
   const [user] = useAuthState(auth);
 
@@ -55,12 +57,13 @@ const ChatHistory = () => {
 
       chatReactElementArray.push(chatMessageElement);
       const X = React.createElement("div", {}, chatReactElementArray);
-      ReactDOM.render(X, document.getElementById("chatContainer"));
+      ReactDOM.render(X, document.getElementById("historyChatContainer"));
       resolve();
     });
   }
 
   const fetchAllChats = async () => {
+    setLoading(true);
     chatReactElementArray = [];
     const id = user?.uid;
     await Axios.get(
@@ -83,6 +86,7 @@ const ChatHistory = () => {
         }
         console.error(error);
       });
+    setLoading(false);
   };
 
   const deleteAllChats = async () => {
@@ -94,8 +98,9 @@ const ChatHistory = () => {
         chatData = [];
         chatReactElementArray = [];
         const X = React.createElement("div", {}, chatReactElementArray);
-        ReactDOM.render(X, document.getElementById("chatContainer"));
+        ReactDOM.render(X, document.getElementById("historyChatContainer"));
         setChatsOn(false);
+        message.success("Chats deleted!");
       })
       .catch((error) => {
         console.error(error);
@@ -110,19 +115,53 @@ const ChatHistory = () => {
           style={{ minHeight: chatsOn ? "85vh" : "89vh" }}
         >
           <button className="chat-history-button" onClick={fetchAllChats}>
-            Get Your All Chats
+            {loading ? <Spin /> : "Get your all chats"}
           </button>
         </div>
       )}
       <div
         className={chatsOn ? "history-chat-container" : ""}
-        id="chatContainer"
+        id="historyChatContainer"
       ></div>
       {chatsOn && (
-        <button className="delete-chat" onClick={deleteAllChats}>
-          Delete All Chats
+        <button className="delete-chat" onClick={() => setModalOpen(true)}>
+          Delete your all chats
         </button>
       )}
+      <Modal
+        title="Confirmation"
+        centered
+        open={modalOpen}
+        width={400}
+        cancelText="Cancel"
+        okText="Delete"
+        onOk={() => {
+          setModalOpen(false);
+          deleteAllChats();
+        }}
+        onCancel={() => setModalOpen(false)}
+        footer={[
+          <Button
+            key="back"
+            className="delete-chat-cancel"
+            onClick={() => setModalOpen(false)}
+          >
+            cancel
+          </Button>,
+          <Button
+            key="submit"
+            className="delete-chat-confirm"
+            onClick={() => {
+              setModalOpen(false);
+              deleteAllChats();
+            }}
+          >
+            Delete
+          </Button>,
+        ]}
+      >
+        <p>Delete the chat?</p>
+      </Modal>
     </div>
   );
 };
