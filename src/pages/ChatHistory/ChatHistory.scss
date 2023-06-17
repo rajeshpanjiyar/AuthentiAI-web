@@ -118,3 +118,28 @@
     font-weight: 600;
     transition:ease-in 0.1s;
 }
+
+.delete-chat-confirm{
+    background-color: red;
+    border: none;
+    color: white;
+    font-weight: 600;
+}
+.delete-chat-cancel{
+    background-color: rgba(47, 108, 214, 0.418);
+    border: none;
+    color: white;
+    font-weight: 600;
+}
+
+.delete-chat-confirm:hover, .delete-chat-cancel:hover {
+    cursor: pointer;
+    color: white !important;
+    transition:ease-in 0.1s;
+}
+.delete-chat-confirm:hover{
+    background-color: rgb(218, 10, 10);
+}
+.delete-chat-cancel:hover{
+    background-color: rgba(8, 90, 231, 0.495);
+}
