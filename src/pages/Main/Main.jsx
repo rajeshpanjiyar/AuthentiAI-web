@@ -240,7 +240,7 @@ const Main = () => {
           style={{ width: chatting ? "72vw" : "" }}
         >
           <div className="webcam-button" onClick={() => setOpen(true)}>
-            Webcam
+          <i className="bx bx-camera"></i>
           </div>
           <input
             type="text"

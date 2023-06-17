@@ -50,8 +50,19 @@
 .product-verify-submit, .webcam-btn {
     background-color: #6F47EB;
     color: white;
-    font-weight: 800;
+    font-weight: 700;
     border: 2px solid #6F47EB !important;
+}
+
+#product-verify-submit{
+   background-color: #6F47EB !important;
+   color: white !important;
+}
+
+#product-verify-submit:hover{
+    background-color: #4015c3 !important;
+    color: white !important;
+  
 }
 
 .webcam-btn{
@@ -63,9 +74,9 @@
 
 .product-verify-submit:hover {
     transition: 0.4s;
-    color: #6F47EB !important;
-    background-color: white;
-    font-weight: 800;
+    color: white;
+    background-color: #6F47EB;
+   
 }
 
 .webcam-label {
