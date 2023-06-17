@@ -99,7 +99,7 @@ const SignIn = ({ alertFunctionality, setAlertFunctionality }) => {
     <div className="signInOuterCover">
       <div className="signInContainer">
         <div className="title-container">
-          <img src="login_banner.jpg" alt="Star " width="900" />
+          <img src="login_banner.jpg" alt="Star " className="signinpage-image" />
         </div>
         <div className="signInform-container">
           <div className="signInHeading">
