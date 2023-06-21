@@ -98,11 +98,6 @@ By providing a seamless experience and integrating with existing verification sy
 ## Future Scope of Improvements:
 The future scope of improvements for AuthentiAI includes integrating more verification services and NFTs, implementing advanced image recognition, creating a community platform, providing humanitarian assistance, integrating with smart devices, and adding gamification elements. These enhancements aim to expand the range of products AuthentiAI can verify, improve accuracy, raise awareness, offer additional support, and make the verification process more engaging for users.
 
-If time permits we will be following up with integrating the above-mentioned features.
+We will be following up by integrating the above-mentioned features.
 
-## Constraints/Known Issues(that we might encounter) :
-The accuracy of barcode scanning and product verification may be affected by factors such as image quality, lighting conditions, and barcode damage.
-The capabilities of the chosen development platform and APIs may limit the chatbot's performance.
-Ensuring data privacy and security for user information and preferences may require additional measures.
-The effectiveness of NLP and machine translation may vary and may not always provide accurate or contextually appropriate responses.
-Continuous monitoring and updates may be required to maintain the chatbot's performance and adapt to changes in product verification systems.
+
