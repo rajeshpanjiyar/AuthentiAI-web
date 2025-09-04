@@ -46,10 +46,6 @@ body {
   font-size: 1rem;
 }
 
-.signinGooglebtn:hover{
-  transition: 0.3s;
-  background-color: #256fe5 !important;
-}
 
 #SignInFormInput {
   text-align: center;
@@ -117,13 +113,11 @@ body {
   flex-direction: row;
   justify-content: center;
   font-family: 'Roboto', sans-serif;
-  border: 1px solid black;
+  border: 1px solid grey !important;
 }
 
 #googleButton:hover {
-  background-color: #4285F4;
-  color: white;
-  border: none;
+  border: 2px solid grey !important;
 }
 
 .signInform-container {
@@ -139,8 +133,8 @@ body {
   height: 60vh;
 }
 
-.signinpage-image{
- width: 60vw !important;
+.signinpage-image {
+  width: 60vw !important;
 }
 
 @media (max-width: 920px) {
@@ -194,7 +188,7 @@ body {
   background-color: #572ade;
 }
 
-.email-input-sigin{
+.email-input-sigin {
   background-color: white !important;
   border: 0.1px solid #000000 !important;
 }
